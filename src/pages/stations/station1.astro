@@ -1,0 +1,244 @@
+---
+/**
+ * Station 1: Thinking Logically - HAP Learning Lab
+ *
+ * Learning Intent:
+ * - Primary concept: Describing behavior clearly must come before writing code
+ * - Supporting concepts: Logic without syntax, clear thinking prevents bugs
+ * - Non-goals: No JavaScript, no pseudocode syntax, no flowcharts
+ *
+ * Code Example Role: Illustrative (plain language only, no code)
+ */
+
+import StationLayout from '../../layouts/StationLayout.astro';
+
+const introContent = `
+    <p><strong>Welcome to Station 1!</strong> I was so excited to start coding. I opened my editor, fingers ready on the keyboard, and then... I froze. I had no idea what to type first.</p>
+    <p class="mt-1">I kept asking myself, "How do I know what code to write if I haven't decided what should happen?"</p>
+    <p class="mt-1">Prof. Teeters smiled when I told her this. "Before you write a single line of code," she said, "you need to know what should happen. If you can't explain the behavior, the computer certainly can't guess it."</p>
+    <p class="mt-1">That's when it clicked for me. Being a developer isn't about typing code—it's about thinking clearly first.</p>
+    <p class="mt-1">Let me show you what I learned about describing behavior before writing a single line of code... 🟠</p>
+`;
+---
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->
+
+<StationLayout
+    stationNumber={1}
+    title="Thinking Logically"
+    subtitle="Why clear thinking comes before code"
+    description="Learn why describing behavior clearly is the first step to becoming a developer. HAP discovers that thinking logically matters more than typing fast."
+    avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1759495998/hap-laptop_xiewar.jpg"
+    avatarAlt="HAP sitting at a laptop, eager to start coding but looking thoughtful"
+    introContent={introContent}
+    ogImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1759495998/hap-laptop_xiewar.jpg"
+    nextStationTitle="Communicating Logic"
+    footerReminder="Behavior first, code second. If you can't explain it, the computer can't run it."
+    labName="Computational Thinking"
+>
+
+    <!-- ============================================================
+         SECTION 1: What You'll Learn
+         ============================================================ -->
+    <section class="content-section">
+        <h2 class="section-heading-centered">What You'll Learn at This Station</h2>
+
+        <div class="intro-box">
+            <p><strong>HAP's Discovery:</strong> I used to think coding was about typing fast. Prof. Teeters taught me that the real skill is thinking clearly about what should happen—before you write anything. Here are the three insights that changed how I approach every project.</p>
+        </div>
+
+        <div class="overview-grid mt-2">
+            <div class="insight-card">
+                <h3><span class="insight-icon">🧠</span> Behavior First</h3>
+                <p class="stat-large">Think → Then Type</p>
+                <p>Before writing code, describe what should happen in plain language. The computer needs you to be specific.</p>
+            </div>
+
+            <div class="insight-card">
+                <h3><span class="insight-icon">💬</span> No Syntax Needed</h3>
+                <p class="stat-large stat-teal">Plain Words Work</p>
+                <p>You don't need special keywords or symbols to describe logic. Regular sentences can capture exactly what a program should do.</p>
+            </div>
+
+            <div class="insight-card">
+                <h3><span class="insight-icon">🎯</span> Clarity Prevents Bugs</h3>
+                <p class="stat-large stat-brown">Vague = Broken</p>
+                <p>When your thinking is unclear, your code will be too. Clear behavior descriptions prevent confusing errors later.</p>
+            </div>
+        </div>
+
+        <div class="hap-note-callout">
+            <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230414/hap-broke-things_qtbum4.jpg"
+                alt="HAP surrounded by tangled code with an 'oops' expression"
+                width="150" height="150" class="hap-note-image" decoding="async" loading="lazy">
+            <div class="hap-note-content">
+                <h3>HAP's Confession:</h3>
+                <ul>
+                    <li>I jumped straight into code without deciding what the program should do—and spent an hour writing logic that never made sense in the first place.</li>
+                    <li>I assumed the computer would "figure it out" if my idea was vague. Spoiler: it didn't. I got errors that made no sense because my thinking was unclear. 😳</li>
+                    <li>I mixed up what I wanted to happen with how it would happen—and ended up solving the wrong problem entirely.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2: What Does "Behavior" Mean?
+         ============================================================ -->
+    <section class="content-section">
+        <div class="topic-section">
+            <h2>What Does "Behavior" Mean?</h2>
+
+            <p class="mb-2">When Prof. Teeters talks about "behavior," she means describing <em>what should happen</em>—not how to make it happen. This was a big shift for me. I kept wanting to jump into the details, but she taught me to stay focused on the actions and outcomes first.</p>
+
+            <div class="analysis-grid">
+                <div class="analysis-point">
+                    <h3>What Happens</h3>
+                    <p>Describe the actions: "The game picks a number" or "The player makes a guess." Focus on events, not mechanics.</p>
+                </div>
+
+                <div class="analysis-point">
+                    <h3>In What Order</h3>
+                    <p>Things happen in sequence. First this, then that. The order matters because each step might depend on what came before.</p>
+                </div>
+
+                <div class="analysis-point">
+                    <h3>Under What Conditions</h3>
+                    <p>Some things only happen if something else is true. "If the guess is correct, the player wins." Conditions control the path.</p>
+                </div>
+
+                <div class="analysis-point">
+                    <h3>What Changes</h3>
+                    <p>Something usually changes along the way—a counter goes up, a message appears, the game ends. Track what's different after each step.</p>
+                </div>
+            </div>
+
+            <div class="hap-note-callout mt-2">
+                <div class="hap-note-content">
+                    <h3>🟠 HAP's Insight:</h3>
+                    <p>Prof. Teeters told me: "If you can explain the behavior to a friend who's never coded, you're ready to start coding. If you can't, you're not." I keep that in my head every time I start something new.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3: The Secret Number Game
+         ============================================================ -->
+    <section class="content-section">
+        <div class="topic-section">
+            <h2>The Secret Number Game</h2>
+
+            <p class="mb-2">Throughout this Learning Lab, we'll use a simple game to practice our thinking. It's called the Secret Number Game, and here's how I would describe its behavior in plain language:</p>
+
+            <div class="intro-box">
+                <p><strong>The Secret Number Game — Behavior Description:</strong></p>
+                <ul class="mt-1">
+                    <li>The game chooses a secret number</li>
+                    <li>The player makes a guess</li>
+                    <li>The game checks the guess</li>
+                    <li>The game gives feedback</li>
+                    <li>The player may guess again</li>
+                    <li>The game eventually ends</li>
+                </ul>
+            </div>
+
+            <p class="mt-2">Notice what's <em>not</em> in that description: no mention of JavaScript, no code syntax, no details about how the computer generates a random number. That's intentional. At this stage, we only care about <strong>what happens</strong>, not how to make it happen.</p>
+
+            <div class="hap-note-callout mt-2">
+                <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230522/hap-thumbs-up_s4si0j.jpg"
+                    alt="HAP giving a confident thumbs up"
+                    width="150" height="150" class="hap-note-image" decoding="async" loading="lazy">
+                <div class="hap-note-content">
+                    <h3>🟠 Why This Matters:</h3>
+                    <p>This same game will follow us through every station in this lab. We'll represent it in different ways—diagrams, pseudocode, even real code—but the <em>behavior</em> stays the same. That's the power of thinking clearly first: once you know what should happen, you can express it in any format.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4: Vague vs. Clear Descriptions
+         ============================================================ -->
+    <section class="content-section">
+        <div class="topic-section">
+            <h2>Vague vs. Clear Descriptions</h2>
+
+            <p class="mb-2">I learned the hard way that vague descriptions create problems. Here's what Prof. Teeters showed me about the difference between unclear and clear behavior descriptions:</p>
+
+            <div class="analysis-grid">
+                <div class="analysis-point">
+                    <h3>❌ Vague: "The game works"</h3>
+                    <p>Works how? What does "working" look like? This doesn't tell me anything about what actually happens.</p>
+                </div>
+
+                <div class="analysis-point">
+                    <h3>✅ Clear: "The game checks if the guess matches the secret number"</h3>
+                    <p>Now I know exactly what action occurs. There's a comparison happening between two things.</p>
+                </div>
+
+                <div class="analysis-point">
+                    <h3>❌ Vague: "The player tries to win"</h3>
+                    <p>What does trying look like? What counts as winning? Too many unanswered questions.</p>
+                </div>
+
+                <div class="analysis-point">
+                    <h3>✅ Clear: "The player enters a number. If it matches the secret number, the player wins."</h3>
+                    <p>Now I know the specific action (entering a number) and the specific condition for winning (matching).</p>
+                </div>
+            </div>
+
+            <div class="hap-note-callout mt-2">
+                <div class="hap-note-content">
+                    <h3>🟠 The Test I Use:</h3>
+                    <p>When I write a behavior description, I ask myself: "Does this raise more questions than it answers?" If yes, it's too vague. A good description should make the next step obvious, not confusing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION: Quick Reference
+         ============================================================ -->
+    <section class="content-section">
+        <div class="tips-container">
+            <h2 class="section-heading-centered">🎓 Thinking Logically Quick Reference</h2>
+
+            <div class="tip-card">
+                <div class="tip-number">1</div>
+                <div>
+                    <h3>Behavior Before Code</h3>
+                    <p>Always describe what should happen before you write any code. If you can't explain it in plain language, you're not ready to code it.</p>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">2</div>
+                <div>
+                    <h3>Plain Language Works</h3>
+                    <p>You don't need special syntax or keywords. Regular sentences like "The game picks a number" are perfect for describing behavior.</p>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">3</div>
+                <div>
+                    <h3>Be Specific, Not Vague</h3>
+                    <p>Vague descriptions create bugs. Instead of "the game works," say exactly what happens: "the game compares the guess to the secret number."</p>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">4</div>
+                <div>
+                    <h3>Ask: What, When, If</h3>
+                    <p>Good behavior descriptions answer: What happens? In what order? Under what conditions? What changes as a result?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</StationLayout>

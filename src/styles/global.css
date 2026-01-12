@@ -700,7 +700,7 @@ h4 {
   margin: 2rem auto;
   max-width: 800px;
   border: 2px solid var(--soft-orange);
-  display: flex;
+  /* display: flex; */
   gap: 1.5rem;
   align-items: flex-start;
   text-align: left;
@@ -854,7 +854,7 @@ h4 {
 /* Responsive: Stack on mobile, image on right for desktop */
 @media (min-width: 769px) {
   .intro-box {
-    flex-direction: row-reverse;
+    flex-direction: row;
   }
 }
 

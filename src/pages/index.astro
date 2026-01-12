@@ -1,104 +1,164 @@
 ---
 /**
- * Placeholder Hub Page
+ * Hub Page - HAP's Computational Thinking Learning Lab
  *
- * Replace this file with content from src/templates/hub-template.astro
- *
- * GETTING STARTED:
- * 1. Read docs/designing-labs/hap-narrative-and-scene-design.md
- * 2. Fill out a station blueprint for each station (docs/reference-cards/station-blueprint-template.md)
- * 3. Copy src/templates/hub-template.astro to this location
- * 4. Replace all [PLACEHOLDER_*] markers with your content
+ * Landing page introducing the 6-station journey through computational thinking.
+ * HAP guides learners from logical thinking through practical developer workflows.
  */
 
 import MainLayout from '../layouts/MainLayout.astro';
 
 const introContent = `
-    <p><strong>Welcome to your new HAP Learning Lab!</strong></p>
-    <p>This is a placeholder page. To get started, copy the hub template from
-    <code>src/templates/hub-template.astro</code> and replace this file.</p>
-    <p class="mt-1">Check out the documentation in the <code>docs/</code> folder for guidance
-    on creating your learning lab content. 🟠</p>
+    <p><strong>Welcome to my Computational Thinking Learning Lab!</strong> I'm HAP, Prof. Teeters' apprentice, and I'm so glad you're here.</p>
+    <p class="mt-1">When I first tried to learn coding, I made every mistake possible. I jumped straight into typing code before thinking about what should happen. I wrote logic that looked correct but trapped players in infinite loops. I trusted AI output without verification.</p>
+    <p class="mt-1">Prof. Teeters taught me that becoming a developer isn't about memorizing syntax—it's about learning to think computationally. These six stations are my learning journey, and now I get to share it with you.</p>
+    <p class="mt-1">Let me show you what I discovered about thinking like a developer... 🟠</p>
 `;
 ---
 
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->
+
 <MainLayout
-    title="HAP's Learning Lab | Getting Started"
-    description="A placeholder page for your new HAP Learning Lab. Replace with your content."
+    title="Computational Thinking | HAP's Learning Lab"
+    description="Join HAP on a 6-station journey through computational thinking. Learn to describe behavior, write logic, trace and debug, apply the Four Pillars, practice developer workflows, and use AI responsibly."
+    ogImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1759495998/hap-laptop_xiewar.jpg"
     headerTitle="HAP's Learning Lab"
-    headerSubtitle="Your Learning Lab Topic Here"
-    avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1759495998/hap-waving_dgzacg.jpg"
-    avatarAlt="HAP waving hello"
+    headerSubtitle="Computational Thinking"
+    avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1759495998/hap-laptop_xiewar.jpg"
+    avatarAlt="HAP sitting at a laptop, ready to learn"
     introContent={introContent}
+    showIntroImage={true}
+    introImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_240,c_limit/v1759495998/hap-waving_dgzacg.jpg"
+    introImageAlt="HAP waving hello"
     showNavigation={false}
-    footerReminder="Start by reading the documentation in docs/designing-labs/"
+    footerReminder="Think before you code. Write it down. Trace it through. Own every line."
 >
 
+    <!-- ============================================================
+         About This Lab Section
+         4 cards explaining what, how, philosophy, and advice
+         ============================================================ -->
     <section class="content-section">
         <div class="topic-section">
-            <h2>Getting Started</h2>
+            <h2>About HAP's Learning Lab</h2>
 
             <div class="analysis-grid">
                 <div class="analysis-point">
-                    <h3>📚 Step 1: Read the docs</h3>
-                    <p>Start with <code>docs/designing-labs/hap-narrative-and-scene-design.md</code></p>
-                    <p class="mt-1">This will help you understand HAP's voice and the station structure.</p>
+                    <h3>🔬 What I Learned</h3>
+                    <p>Computational thinking is a way of approaching problems that goes beyond just writing correct code. It's about breaking things down, recognizing patterns, focusing on what matters, and describing steps clearly.</p>
+                    <p class="mt-1">Prof. Teeters taught me that these skills apply everywhere—not just in programming.</p>
                 </div>
 
                 <div class="analysis-point">
-                    <h3>📝 Step 2: Plan your stations</h3>
-                    <p>Use the blueprint template in <code>docs/reference-cards/station-blueprint-template.md</code></p>
-                    <p class="mt-1">Fill out one blueprint for each of your 6 stations before writing content.</p>
+                    <h3>🎯 How I Practiced</h3>
+                    <p>I built the Secret Number Game from the ground up—first describing behavior in plain language, then writing pseudocode, then finding and fixing a hidden bug through tracing.</p>
+                    <p class="mt-1">Then I practiced real developer workflows by contributing to a live project called Magic Quotes.</p>
                 </div>
 
                 <div class="analysis-point">
-                    <h3>🏗️ Step 3: Create your pages</h3>
-                    <p>Copy templates from <code>src/templates/</code> to <code>src/pages/</code></p>
-                    <p class="mt-1">Replace all <code>[PLACEHOLDER_*]</code> markers with your content.</p>
+                    <h3>🎨 My Philosophy</h3>
+                    <p>Mistakes are data, not failures. Every bug I found taught me something. Every time I got confused, I discovered a gap in my understanding.</p>
+                    <p class="mt-1">I share my mistakes openly because that's how we actually learn.</p>
                 </div>
 
                 <div class="analysis-point">
-                    <h3>✅ Step 4: Validate</h3>
-                    <p>Use the Claude Skills in <code>.claude/skills/</code> to validate your content</p>
-                    <p class="mt-1">Run <code>npm run build</code> to check for errors.</p>
+                    <h3>🤔 My Advice</h3>
+                    <p>Take your time at each station. Don't rush to the code—the thinking comes first. When something doesn't make sense, trace through it step by step.</p>
+                    <p class="mt-1">And remember: if you can't explain it in plain words, you're not ready to code it.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ============================================================
+         Learning Stations Grid
+         6 station cards linking to each station page
+         ============================================================ -->
+    <div class="content-container">
+        <section class="content-section">
+            <h2 class="section-heading-centered">Learning Stations</h2>
+            <nav aria-label="Learning stations">
+                <div class="overview-grid">
+
+                    <!-- Station 1 -->
+                    <a href="/stations/station1/" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">🧠</span> Station 1: Thinking Logically</h3>
+                        <p><strong>Focus:</strong> Describing behavior before writing code</p>
+                        <p class="station-description">I used to think coding was about typing fast. Prof. Teeters taught me that the real skill is thinking clearly about what should happen—before you write anything. Here I introduce the Secret Number Game and explain why behavior comes before syntax.</p>
+                        <p class="station-cta">→ Visit Station 1</p>
+                    </a>
+
+                    <!-- Station 2 -->
+                    <a href="/stations/station2/" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">📝</span> Station 2: Communicating Logic</h3>
+                        <p><strong>Focus:</strong> Writing logic down using pseudocode and flowcharts</p>
+                        <p class="station-description">I tried explaining my game idea to Grace and realized I kept changing the explanation. Logic that only exists in your head can't be reviewed or improved. Here I learn to write my thinking down so others can follow it.</p>
+                        <p class="station-cta">→ Visit Station 2</p>
+                    </a>
+
+                    <!-- Station 3 -->
+                    <a href="/stations/station3/" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">🔍</span> Station 3: Reasoning and Correcting Logic</h3>
+                        <p><strong>Focus:</strong> Tracing logic step by step to find hidden flaws</p>
+                        <p class="station-description">My loop looked correct when I read it. But when Prof. Teeters asked me to trace through it step by step, I discovered the player was trapped in an infinite loop! Here I learn that reading is not the same as tracing.</p>
+                        <p class="station-cta">→ Visit Station 3</p>
+                    </a>
+
+                    <!-- Station 4 -->
+                    <a href="/stations/station4/" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">💡</span> Station 4: From Logic to Computational Thinking</h3>
+                        <p><strong>Focus:</strong> Naming the patterns I had already been practicing</p>
+                        <p class="station-description">After fixing my game, I wanted to build bigger things. Grace told me logic alone wasn't enough. That's when I learned the Four Pillars of Computational Thinking—and realized I had been using them all along without knowing their names.</p>
+                        <p class="station-cta">→ Visit Station 4</p>
+                    </a>
+
+                    <!-- Station 5 -->
+                    <a href="/stations/station5/" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">🛠️</span> Station 5: Getting Started with Real Projects</h3>
+                        <p><strong>Focus:</strong> Learning the developer workflow with Git and GitHub</p>
+                        <p class="station-description">I knew how to think about problems, but what does it actually feel like to work with real developer tools? Here I fork Magic Quotes, clone it locally, and learn to validate my setup—all without memorizing terminal commands.</p>
+                        <p class="station-cta">→ Visit Station 5</p>
+                    </a>
+
+                    <!-- Station 6 -->
+                    <a href="/stations/station6/" class="insight-card station-card-link">
+                        <h3><span class="insight-icon">🤖</span> Station 6: AI Assistance for Computational Thinking</h3>
+                        <p><strong>Focus:</strong> Using AI responsibly—verification, ownership, quality</p>
+                        <p class="station-description">I asked AI to generate my contribution and everything failed validation. Prof. Teeters taught me: AI can generate code faster than you can type, but you own every line. Here I learn to prompt effectively, verify always, and understand everything.</p>
+                        <p class="station-cta">→ Visit Station 6</p>
+                    </a>
+
+                </div>
+            </nav>
+        </section>
+    </div>
+
+    <!-- ============================================================
+         The Journey Overview
+         ============================================================ -->
     <section class="content-section">
-        <div class="tips-container">
-            <h2 class="section-heading-centered">🎓 Quick Reference</h2>
+        <div class="topic-section">
+            <h2>The Learning Journey</h2>
 
-            <div class="tip-card">
-                <div class="tip-number">1</div>
-                <div>
-                    <h3>Hub template</h3>
-                    <p><code>src/templates/hub-template.astro</code> → <code>src/pages/index.astro</code></p>
-                </div>
+            <div class="intro-box">
+                <p><strong>Stations 1-4: Computational Thinking Foundations</strong></p>
+                <p class="mt-1">Through the Secret Number Game, you'll learn to think logically, communicate your logic, trace and debug, and recognize the Four Pillars of Computational Thinking. No code required—just clear thinking.</p>
+
+                <p class="mt-2"><strong>Stations 5-6: Real-World Practice</strong></p>
+                <p class="mt-1">You'll shift from concepts to practice by working with Magic Quotes—a real, deployed project. Fork it, clone it, contribute to it, and learn to use AI as a responsible assistant. By the end, you'll have opened your first pull request.</p>
             </div>
 
-            <div class="tip-card">
-                <div class="tip-number">2</div>
-                <div>
-                    <h3>Station template</h3>
-                    <p><code>src/templates/station-template.astro</code> → <code>src/pages/stations/station[1-6].astro</code></p>
-                </div>
-            </div>
-
-            <div class="tip-card">
-                <div class="tip-number">3</div>
-                <div>
-                    <h3>HAP images</h3>
-                    <p>See the image inventory in <code>.claude/skills/hap-image-validation/</code></p>
-                </div>
-            </div>
-
-            <div class="tip-card">
-                <div class="tip-number">4</div>
-                <div>
-                    <h3>Development server</h3>
-                    <p>Run <code>npm run dev</code> to start the development server at localhost:4321</p>
+            <div class="hap-note-callout mt-2">
+                <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759495998/HAP-learner_dvehmt.jpg"
+                    alt="HAP ready to learn"
+                    width="150" height="150" class="hap-note-image" decoding="async" loading="lazy">
+                <div class="hap-note-content">
+                    <h3>🟠 HAP's Promise:</h3>
+                    <p>I won't pretend I know everything. I'm still learning too. What I can promise is that I'll share exactly what helped me—the mistakes, the breakthroughs, the moments when things finally clicked.</p>
+                    <p class="mt-1">Prof. Teeters always says: "Understanding how to learn matters more than memorizing what to type." Let's figure this out together.</p>
                 </div>
             </div>
         </div>

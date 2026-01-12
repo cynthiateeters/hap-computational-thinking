@@ -1,0 +1,603 @@
+---
+/**
+ * Station 5: Getting Started with Real Projects - HAP Learning Lab
+ *
+ * Learning Intent:
+ * - Primary concept: Developers learn by working with real projects—forking for safety, cloning to explore, validating to build confidence
+ * - Supporting concepts: Git/GitHub are tools for safe experimentation; local/remote separation protects you; workflow matters more than memorization
+ * - Non-goals: No Git terminal commands, no file creation, no commits, no PRs (all Station 6)
+ *
+ * Code Example Role: Illustrative - JSON templates, npm commands, VS Code screenshots
+ *
+ * Central Artifact: Magic Quotes repository (intentional practice environment)
+ */
+
+import StationLayout from '../../layouts/StationLayout.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+
+const introContent = `
+    <p><strong>Welcome to Station 5!</strong> After learning computational thinking, I wanted to practice being a developer. I know how to think about problems now—but what does it actually feel like to work with real developer tools?</p>
+    <p class="mt-1">I asked Grace Hopper: "How can I practice the developer workflow without being overwhelmed by complexity?"</p>
+    <p class="mt-1">She smiled. "HAP, developers learn by practicing with real projects in safe environments. Prof Teeters has a project called Magic Quotes—it's live, it works, and it's designed to be low-stress. You'll fork it for safety, clone it to explore, and validate it to build confidence. This is how developers practice."</p>
+    <p class="mt-1">"You won't write code yet. You'll just experience the workflow. That's where everyone starts."</p>
+    <p class="mt-1">Let me show you what I learned about practicing like a developer... 🟠</p>
+`;
+---
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->
+<StationLayout stationNumber={5} title='Getting Started with Real Projects' subtitle='Learning the developer workflow in a safe practice environment' description='HAP learns to fork, clone, explore, and validate using Magic Quotes—a real project designed as a beginner-friendly practice environment for learning developer workflows.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1759495998/hap-laptop_xiewar.jpg' avatarAlt='HAP sitting at his laptop, ready to learn how developers work' introContent={introContent} nextStationTitle='Practicing the Full Workflow' footerReminder='Fork first, clone locally, explore carefully, validate everything. This is how developers learn from real code.' labName='Computational Thinking'>
+  <!-- ============================================================
+         SECTION 1: What You'll Learn
+         ============================================================ -->
+  <section class='content-section'>
+    <h2 class='section-heading-centered'>What You'll Learn at This Station</h2>
+
+    <div class='intro-box'>
+      <p><strong>HAP's Discovery:</strong> I used to think I needed to understand everything before I could touch a project. But developers have a workflow that makes learning safer and faster—fork for safety, clone to explore, validate to build confidence. Here are the three insights that taught me how to learn from real code.</p>
+    </div>
+
+    <div class='overview-grid mt-2'>
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>🍴</span> Forking Creates a Safe Workspace</h3>
+        <p class='stat-large'>Your Copy, Your Rules</p>
+        <p>Forking gives you a personal copy on GitHub where you can experiment without affecting anything. It's not stealing—it's how developers create safe learning environments.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>💻</span> Local Means Hands-On</h3>
+        <p class='stat-large stat-teal'>Clone → Explore → Learn</p>
+        <p>Cloning brings real code to your computer where you can read it, run it, and understand it. Your local copy is separate from GitHub—nothing you do locally affects the online version until you deliberately push.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>✅</span> Validation Builds Confidence</h3>
+        <p class='stat-large stat-brown'>See It Work First</p>
+        <p>Running <code>npm run dev</code> proves the project works on your computer. Running <code>npm run validate</code> shows you the quality checks. Seeing these succeed builds confidence that you can work with real code.</p>
+      </div>
+    </div>
+
+    <div class='hap-note-callout'>
+      <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230414/hap-broke-things_qtbum4.jpg' alt='HAP looking embarrassed about past mistakes' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+      <div class='hap-note-content'>
+        <h3>HAP's Confession:</h3>
+        <ul>
+          <li>I thought Git and GitHub were the same thing. Grace corrected me: Git tracks changes locally, GitHub hosts projects online. They work together but they're different tools. 😳</li>
+          <li>I assumed forking was wrong—like I was copying someone's work dishonestly. But it's the expected way to create a safe workspace for learning.</li>
+          <li>I was terrified to run <code>npm install</code> because I didn't understand "dependencies." It just means "tools this project needs to run."</li>
+          <li>I thought I needed to understand all the JavaScript before I could work with the project. Magic Quotes taught me I only need to understand the part I'm working on.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 2: Understanding Git and GitHub
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Understanding Git and GitHub</h2>
+
+      <p class='mb-2'>Before Grace showed me the workflow, she explained what these tools actually do and why developers use them.</p>
+
+      <div class='intro-box'>
+        <p><strong>Grace explained:</strong> "Developers learn by working with real projects. They fork to create a safe workspace, clone to explore locally, and validate to prove everything works. While this is like contributing to open source, more importantly for you it is about learning how to work with code using the correct tools. That way when you start to learn to code, you will already have practice with the workflow."</p>
+      </div>
+
+      <h3 class='mt-2'>Git vs. GitHub</h3>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>Git (on your computer)</h3>
+          <p>Git is version control software. It tracks changes to files over time, like a save history for your project. Every change gets recorded with a message explaining what you did and why.</p>
+          <p class='mt-1'>Git runs on your computer and works even when you're offline.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>GitHub (online platform)</h3>
+          <p>GitHub is a website that hosts projects online. It's where developers share code, store backups, and work together on projects.</p>
+          <p class='mt-1'>GitHub adds features like forking, browsing code online, and managing project files.</p>
+        </div>
+      </div>
+
+      <h3 class='mt-2'>Three Copies: Original, Fork, and Local</h3>
+
+      <p class='mb-2'>Grace drew me a diagram showing the three versions of a project I'd be working with:</p>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>Original Project</h3>
+          <p>The main project on GitHub (e.g., <code>cynthiateeters/magic-quotes</code>)</p>
+          <p class='mt-1'>You can read and explore this, but you can't change it directly.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Your Fork (Remote)</h3>
+          <p>Your personal copy on GitHub (e.g., <code>hap-bot/magic-quotes</code>)</p>
+          <p class='mt-1'>This is YOUR workspace—you can experiment here without worrying.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Your Clone (Local)</h3>
+          <p>The files on your computer after cloning</p>
+          <p class='mt-1'>Where you actually read, run, and explore the code.</p>
+        </div>
+      </div>
+
+      <div class='hap-note-callout mt-2'>
+        <div class='hap-note-content'>
+          <h3>🟠 What I learned:</h3>
+          <p>These three copies are separate until I deliberately connect them. My local changes don't affect my fork until I push. My fork doesn't affect the original at all unless I explicitly request it. This separation is what makes experimentation safe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 3: Magic Quotes as Practice Environment
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Magic Quotes: A Practice Environment</h2>
+
+      <p class='mb-2'>Grace introduced me to Magic Quotes—a real project intentionally designed for beginners to practice developer workflows.</p>
+
+      <div class='intro-box'>
+        <p><strong>Why Magic Quotes works for learning:</strong></p>
+        <ul class='mt-1'>
+          <li><strong>Real and deployed</strong> — It's not a toy example; it's a live website at magic-quotes.netlify.app</li>
+          <li><strong>Beginner-friendly structure</strong> — One file per person, so you can't accidentally interfere with others' work</li>
+          <li><strong>Immediate validation</strong> — Built-in tools check if you did everything correctly</li>
+          <li><strong>Forgiving by design</strong> — Your fork is YOUR space; you can't break the original</li>
+        </ul>
+      </div>
+
+      <h3 class='mt-2'>Two Ways to See the Same Project</h3>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>GitHub Repository</h3>
+          <p><a href='https://github.com/cynthiateeters/magic-quotes' target='_blank' rel='noopener noreferrer'>github.com/cynthiateeters/magic-quotes</a></p>
+          <p class='mt-1'>This is where the source code lives. I can see files, read documentation, and understand how it's structured.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Live Website</h3>
+          <p><a href='https://magic-quotes.netlify.app/' target='_blank' rel='noopener noreferrer'>magic-quotes.netlify.app</a></p>
+          <p class='mt-1'>This is the deployed site built from that code. Same project, two views—one shows the source, one shows the result.</p>
+        </div>
+      </div>
+
+      <p class='mt-2'>Grace said: "Visit both. See how the website works, then look at the code to understand how it was built. That's what developers do—they explore the running version first, then study the code."</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 4: Prerequisites Check
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Before You Start: What You'll Need</h2>
+
+      <p class='mb-2'>Grace asked me to check that I had the right tools installed before I started practicing. I already had everything, but this was my first time actually <em>using</em> them together.</p>
+
+      <div class='intro-box'>
+        <p><strong>HAP's setup checklist:</strong> I had VS Code, Git, Node.js, and a GitHub account already installed and created. But I'd never used them for an actual developer workflow—this was my first time putting the pieces together.</p>
+      </div>
+
+      <h3 class='mt-2'>Tools You'll Use</h3>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>VS Code</h3>
+          <p>Your text editor and command center. I'll use the built-in Source Control panel for Git operations and the integrated terminal for running commands.</p>
+          <p class='mt-1'><strong>Why this matters:</strong> VS Code combines editing, version control, and terminal in one place.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Git & GitHub</h3>
+          <p>Git tracks changes on my computer. GitHub hosts projects online. VS Code connects them through its Source Control panel.</p>
+          <p class='mt-1'><strong>Why this matters:</strong> I won't need to memorize terminal commands—VS Code's GUI handles Git operations.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Node.js & npm</h3>
+          <p>Node.js runs JavaScript outside browsers. npm (Node Package Manager) installs tools that projects need to work.</p>
+          <p class='mt-1'><strong>Why this matters:</strong> Magic Quotes uses Vite (a development server) that runs through npm.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>GitHub Account</h3>
+          <p>My identity on GitHub. When I fork Magic Quotes, it creates a copy under my account name.</p>
+          <p class='mt-1'><strong>Why this matters:</strong> Forking requires a GitHub account—it's where my practice workspace lives.</p>
+        </div>
+      </div>
+
+      <div class='hap-note-callout mt-2'>
+        <div class='hap-note-content'>
+          <h3>🟠 What I learned:</h3>
+          <p>Having tools installed and actually using them are completely different. I'd opened VS Code before, but I'd never cloned a repository, run npm commands, or used the integrated terminal. This station was where those tools stopped being abstract and started making sense.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 5: Forking Magic Quotes
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Step 1: Forking Creates Your Safe Workspace</h2>
+
+      <p class='mb-2'>Grace walked me through forking first. "This creates your own copy on GitHub," she explained. "Whatever you do in your fork cannot affect the original. That's what makes it safe to practice."</p>
+
+      <div class='intro-box'>
+        <p><strong>What forking does:</strong> It creates a complete copy of the Magic Quotes repository under your GitHub account. The original stays untouched. Your fork is YOUR workspace.</p>
+      </div>
+
+      <h3 class='mt-2'>How I Forked Magic Quotes</h3>
+
+      <ol class='mt-1'>
+        <li>I visited <a href='https://github.com/cynthiateeters/magic-quotes' target='_blank' rel='noopener noreferrer'>github.com/cynthiateeters/magic-quotes</a></li>
+        <li>I clicked the <strong>Fork</strong> button in the top-right corner</li>
+        <li>GitHub asked me where to create the fork—I selected my account</li>
+        <li>A few seconds later, I had my own copy at <code>github.com/[my-username]/magic-quotes</code></li>
+      </ol>
+
+      <div class='hap-note-callout mt-2'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230414/hap-broke-things_qtbum4.jpg' alt='HAP looking relieved' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
+          <h3>HAP's Confession:</h3>
+          <p>I was nervous about forking. "What if I break something?" Grace reminded me: "Your fork is YOUR copy. The original repository cannot be affected by anything you do in your fork. You have complete freedom to experiment." That made me feel safe to try. 😳</p>
+        </div>
+      </div>
+
+      <div class='analysis-grid mt-2'>
+        <div class='analysis-point'>
+          <h3>Original Repository</h3>
+          <p><code>cynthiateeters/magic-quotes</code></p>
+          <p class='mt-1'>This stays exactly as it was. I can read it, but I can't change it.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>My Fork (Remote)</h3>
+          <p><code>[my-username]/magic-quotes</code></p>
+          <p class='mt-1'>This is MY copy on GitHub. I can experiment here without worrying.</p>
+        </div>
+      </div>
+
+      <p class='mt-2'><strong>What I noticed:</strong> My fork looks identical to the original—same files, same structure. But the repository name at the top shows my username, with a note: "forked from cynthiateeters/magic-quotes". That confirmed I was in my own workspace.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 6: Cloning with VS Code
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Step 2: Cloning Brings Code to Your Computer</h2>
+
+      <p class='mb-2'>After forking, Grace told me: "Now you need a local copy—files on your computer where you can actually explore and run the project. That's what cloning does."</p>
+
+      <div class='intro-box'>
+        <p><strong>What cloning does:</strong> It downloads your fork from GitHub to your computer. Your local copy and your fork on GitHub are separate until you deliberately sync them.</p>
+      </div>
+
+      <h3 class='mt-2'>How I Cloned Using VS Code</h3>
+
+      <p class='mb-1'>Grace showed me the VS Code way (no terminal commands needed):</p>
+
+      <ol class='mt-1'>
+        <li>On my fork's GitHub page, I clicked the green <strong>Code</strong> button</li>
+        <li>I copied the HTTPS URL (it looked like <code>https://github.com/[my-username]/magic-quotes.git</code>)</li>
+        <li>In VS Code, I opened the Command Palette (Cmd+Shift+P on Mac, Ctrl+Shift+P on Windows)</li>
+        <li>I typed "Git: Clone" and selected that command</li>
+        <li>I pasted my fork's URL</li>
+        <li>VS Code asked where to save the files—I chose a folder on my computer</li>
+        <li>After a few seconds, VS Code asked if I wanted to open the cloned repository—I clicked "Open"</li>
+      </ol>
+
+      <div class='hap-note-callout mt-2'>
+        <div class='hap-note-content'>
+          <h3>🟠 What I learned:</h3>
+          <p>Cloning means downloading. But it's smarter than just copying files—Git remembers where the code came from (my fork on GitHub) so I can sync changes later. My local copy doesn't affect GitHub until I push. That separation gave me confidence to explore.</p>
+        </div>
+      </div>
+
+      <h3 class='mt-2'>Three Copies: The Full Picture</h3>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>Original Project</h3>
+          <p><code>cynthiateeters/magic-quotes</code> (on GitHub)</p>
+          <p class='mt-1'>The source I forked from. Untouchable.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>My Fork (Remote)</h3>
+          <p><code>[my-username]/magic-quotes</code> (on GitHub)</p>
+          <p class='mt-1'>My copy on GitHub. Safe workspace.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>My Clone (Local)</h3>
+          <p><code>/path/on/my/computer/magic-quotes</code></p>
+          <p class='mt-1'>Files on my laptop. Where I actually work.</p>
+        </div>
+      </div>
+
+      <p class='mt-2'><strong>What I noticed:</strong> Once I opened the cloned repository in VS Code, I could see all the files in the Explorer panel. These were real files on my computer now—not just something I was viewing on GitHub.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 7: Exploring the Repository Structure
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Step 3: Exploring Files and Documentation</h2>
+
+      <p class='mb-2'>With Magic Quotes open in VS Code, Grace told me: "Before running anything, explore. Read the README. Look at the folder structure. Understand what you're working with."</p>
+
+      <div class='intro-box'>
+        <p><strong>What exploring does:</strong> You learn how the project is organized, what each folder contains, and where to find information when you need it. Documentation makes sense when you're looking at actual files.</p>
+      </div>
+
+      <h3 class='mt-2'>What I Found in the Root README</h3>
+
+      <p class='mb-1'>I opened <code>README.md</code> and read the project overview. It explained:</p>
+
+      <ul class='mt-1'>
+        <li><strong>Purpose:</strong> Magic Quotes displays random quotes on a website</li>
+        <li><strong>Structure:</strong> One JSON file per contributor in the <code>data/</code> folder</li>
+        <li><strong>Commands:</strong> <code>npm install</code>, <code>npm run dev</code>, <code>npm run validate</code></li>
+        <li><strong>Contributing:</strong> Clear guidelines on creating quote files</li>
+      </ul>
+
+      <h3 class='mt-2'>Following the Documentation Hierarchy</h3>
+
+      <p class='mb-1'>The root README pointed me to <code>data/README.md</code> for contributor guidelines. I navigated there and found:</p>
+
+      <ul class='mt-1'>
+        <li>Required JSON fields: <code>author</code>, <code>about</code>, <code>entries</code></li>
+        <li>Schema rules: unique IDs, valid categories, allowed tones</li>
+        <li>Example files showing correct patterns</li>
+      </ul>
+
+      <h3 class='mt-2'>Studying an Example File</h3>
+
+      <p class='mb-1'>I opened <code>data/quote-example.json</code> and saw this structure:</p>
+
+      <CodeBlock
+        code={`{
+  "author": "Example Contributor",
+  "about": "Demonstrating the Magic Quotes JSON structure",
+  "entries": [
+    {
+      "id": "example-001",
+      "category": "developer-wisdom",
+      "tone": "reflective",
+      "text": "Code is read more often than it is written.",
+      "source": "ai-assisted"
+    }
+  ]
+}`}
+        lang='json'
+      />
+
+      <div class='hap-note-callout mt-2'>
+        <div class='hap-note-content'>
+          <h3>🟠 What I learned:</h3>
+          <p>Documentation hierarchy clicked when I saw it in context. The root README gave me the big picture. The folder-specific README gave me detailed rules. The example files showed me the exact pattern to follow. Reading happened naturally because I was looking at real files, not abstract instructions.</p>
+        </div>
+      </div>
+
+      <p class='mt-2'><strong>What I noticed:</strong> I didn't need to understand the JavaScript files or how Vite works. The JSON structure was clear enough that I could see what I'd need to create later. That made the project feel approachable.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 8: Running and Validating
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Step 4: Setting Up and Seeing It Work</h2>
+
+      <p class='mb-2'>Grace said: "Now validate your setup. Run the project locally and see it work. That proves everything is configured correctly."</p>
+
+      <div class='intro-box'>
+        <p><strong>What validating does:</strong> You prove that the project works on your computer. Running <code>npm install</code> gets the tools you need. Running <code>npm run dev</code> starts the website locally. Running <code>npm run validate</code> tests the quality checks.</p>
+      </div>
+
+      <h3 class='mt-2'>Opening the Integrated Terminal</h3>
+
+      <p class='mb-1'>Grace showed me how to open VS Code's integrated terminal:</p>
+
+      <ul class='mt-1'>
+        <li><strong>Menu:</strong> Terminal → New Terminal</li>
+        <li><strong>Keyboard:</strong> Ctrl+` (backtick key)</li>
+      </ul>
+
+      <p class='mt-1'>The terminal opened at the bottom of VS Code, already in my <code>magic-quotes</code> folder. No need to navigate—VS Code knew where I was working.</p>
+
+      <h3 class='mt-2'>Installing Dependencies</h3>
+
+      <p class='mb-1'>I ran my first command:</p>
+
+      <CodeBlock code={`npm install`} lang='bash' />
+
+      <p class='mt-1'><strong>What happened:</strong> npm read <code>package.json</code> (the file listing required tools) and downloaded everything the project needs. A <code>node_modules/</code> folder appeared with hundreds of files—these are the tools Vite and other systems use.</p>
+
+      <div class='hap-note-callout mt-1'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230414/hap-broke-things_qtbum4.jpg' alt='HAP looking embarrassed' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
+          <h3>HAP's Confession:</h3>
+          <p>I was terrified to run <code>npm install</code> because I didn't understand what "dependencies" meant. When I finally ran it, I realized it just means "tools this project needs to work." The package manager downloaded them automatically. I had built up anxiety over something that took 30 seconds. 😳</p>
+        </div>
+      </div>
+
+      <h3 class='mt-2'>Starting the Development Server</h3>
+
+      <p class='mb-1'>Next, I ran:</p>
+
+      <CodeBlock code={`npm run dev`} lang='bash' />
+
+      <p class='mt-1'><strong>What happened:</strong> Vite started a local web server. The terminal showed:</p>
+
+      <CodeBlock
+        code={`VITE v5.0.0  ready in 234 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  press h + enter to show help`}
+        lang='text'
+      />
+
+      <p class='mt-1'>I opened my browser and visited <code>localhost:5173</code>. Magic Quotes appeared—the same website I'd seen at <code>magic-quotes.netlify.app</code>, but running on my computer!</p>
+
+      <div class='hap-note-callout mt-1'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230414/hap-celebrating_bljvgl.jpg' alt='HAP celebrating success' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
+          <h3>🟠 HAP's breakthrough moment:</h3>
+          <p>Seeing Magic Quotes running on localhost made everything click. This wasn't just reading about code—I was running production-quality code on my laptop. The website worked. The quotes displayed. Everything functioned. That's when I felt like I was practicing being a developer.</p>
+        </div>
+      </div>
+
+      <h3 class='mt-2'>Testing the Validation System</h3>
+
+      <p class='mb-1'>With the dev server still running in one terminal, I opened a second terminal (Terminal → New Terminal) and ran:</p>
+
+      <CodeBlock code={`npm run validate`} lang='bash' />
+
+      <p class='mt-1'><strong>What happened:</strong> The validation script checked all JSON files in <code>data/</code> against the schema rules. It confirmed:</p>
+
+      <ul class='mt-1'>
+        <li>All required fields present</li>
+        <li>All IDs unique</li>
+        <li>All categories and tones valid</li>
+        <li>No syntax errors</li>
+      </ul>
+
+      <p class='mt-1'>The terminal showed: <code>✓ All quote files are valid</code></p>
+
+      <div class='hap-note-callout mt-2'>
+        <div class='hap-note-content'>
+          <h3>🟠 What I learned:</h3>
+          <p>Validation tools catch mistakes before they cause problems. When I create my own quote file later (Station 6), I'll run <code>npm run validate</code> to check if I followed the rules correctly. It's like a friendly reviewer who points out errors without judgment.</p>
+        </div>
+      </div>
+
+      <p class='mt-2'><strong>What I noticed:</strong> These three commands—<code>npm install</code>, <code>npm run dev</code>, <code>npm run validate</code>—are the core developer workflow. Install tools, run the project, check quality. That's what developers do every day.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 9: HAP's Readiness Moment
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>HAP's Readiness: What I Accomplished</h2>
+
+      <p class='mb-2'>After running <code>npm run validate</code> successfully, I stepped back and realized what I'd done. I hadn't written any code yet—but I'd practiced the entire developer setup workflow.</p>
+
+      <div class='intro-box'>
+        <p><strong>What I successfully completed:</strong></p>
+        <ul class='mt-1'>
+          <li>✅ Forked Magic Quotes (created my safe workspace on GitHub)</li>
+          <li>✅ Cloned my fork locally (got the files on my computer)</li>
+          <li>✅ Explored the repository structure (understood the organization)</li>
+          <li>✅ Read documentation in context (READMEs made sense)</li>
+          <li>✅ Installed dependencies (got the tools working)</li>
+          <li>✅ Ran the development server (saw the site locally)</li>
+          <li>✅ Validated the setup (confirmed everything works)</li>
+          <li>✅ Understood the JSON schema (know what to create next)</li>
+        </ul>
+      </div>
+
+      <div class='hap-note-callout mt-2'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759495998/HAP-learner_dvehmt.jpg' alt='HAP feeling confident and ready' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
+          <h3>HAP's reflection:</h3>
+          <p>Before Station 5, Git, GitHub, npm, and Vite were intimidating terms. Now they're tools I've actually used. I forked a real repository. I cloned it to my computer. I ran it locally and saw it work. I didn't just read about the developer workflow—I practiced it. That makes me feel ready for what's next.</p>
+        </div>
+      </div>
+
+      <h3 class='mt-2'>What Prof. Teeters Said</h3>
+
+      <p class='mb-2'>After I showed Prof. Teeters my running localhost and successful validation, she smiled:</p>
+
+      <blockquote class='mt-1'>
+        <p>"HAP, what you did today—forking, cloning, setting up a project, validating your environment—this is what professional developers do every day. You didn't write code yet, but you learned the workflow. That matters more than you think."</p>
+        <p class='mt-1'>"Magic Quotes gave you a low-stress way to practice with real tools. Now you know what it feels like to work like a developer. That confidence will carry you through everything that comes next."</p>
+      </blockquote>
+
+      <p class='mt-2'><strong>What I'm ready for:</strong> In Station 6, I'll create my own quote file (<code>quote-hap.json</code>), use VS Code's Source Control panel to commit my work, and practice the full Git workflow. But I already have everything set up. No friction, no setup time—just practice.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 10: Quick Reference
+         ============================================================ -->
+  <section class='content-section'>
+    <h2 class='section-heading-centered'>Developer Workflow Quick Reference</h2>
+
+    <p class='mb-2'>Here are the key insights from practicing the developer workflow with Magic Quotes:</p>
+
+    <div class='overview-grid mt-2'>
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>🍴</span> Forking Creates Safety</h3>
+        <p class='stat-large'>Your Copy, Your Rules</p>
+        <p>Forking gives you a personal copy on GitHub. Your fork is YOUR workspace—experiment freely without affecting the original.</p>
+        <p class='mt-1'><strong>Action:</strong> Click "Fork" on any GitHub repository to create your copy.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>💻</span> Cloning Brings Code Local</h3>
+        <p class='stat-large stat-teal'>Download to Explore</p>
+        <p>Cloning downloads your fork to your computer. Your local copy and GitHub copy stay separate until you push changes.</p>
+        <p class='mt-1'><strong>Action:</strong> Use VS Code's "Git: Clone" command with your fork's URL.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>🔍</span> Exploring Builds Understanding</h3>
+        <p class='stat-large stat-brown'>Read in Context</p>
+        <p>Documentation makes sense when you're looking at actual files. Follow README links, study examples, notice patterns.</p>
+        <p class='mt-1'><strong>Action:</strong> Open README.md, navigate to folders, examine example files.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>✅</span> Validating Builds Confidence</h3>
+        <p class='stat-large'>See It Work</p>
+        <p>Running the project locally proves your setup works. Validation tools catch mistakes early.</p>
+        <p class='mt-1'><strong>Action:</strong> Run <code>npm install</code>, <code>npm run dev</code>, <code>npm run validate</code>.</p>
+      </div>
+    </div>
+
+    <h3 class='mt-3'>Essential Commands</h3>
+
+    <div class='analysis-grid mt-1'>
+      <div class='analysis-point'>
+        <h3><code>npm install</code></h3>
+        <p>Installs project dependencies listed in <code>package.json</code>. Run this once after cloning.</p>
+      </div>
+
+      <div class='analysis-point'>
+        <h3><code>npm run dev</code></h3>
+        <p>Starts the local development server. Visit <code>localhost:5173</code> to see the site running.</p>
+      </div>
+
+      <div class='analysis-point'>
+        <h3><code>npm run validate</code></h3>
+        <p>Checks all JSON files against schema rules. Confirms your files are correctly formatted.</p>
+      </div>
+    </div>
+
+    <div class='hap-note-callout mt-2'>
+      <div class='hap-note-content'>
+        <h3>🟠 Remember:</h3>
+        <p>The developer workflow isn't about memorizing commands—it's about understanding the sequence. Fork for safety → Clone to explore → Validate to confirm. That pattern applies to every project you'll work with. You've practiced it once. You can do it again.</p>
+      </div>
+    </div>
+  </section>
+</StationLayout>

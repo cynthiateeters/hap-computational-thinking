@@ -1,0 +1,360 @@
+---
+/**
+ * Station 2: Communicating Logic - HAP Learning Lab
+ *
+ * Learning Intent:
+ * - Primary concept: Logic must be written down in shared representations so it can be understood, reviewed, and improved
+ * - Supporting concepts: Same logic can be represented multiple ways, representations make thinking visible
+ * - Non-goals: No JavaScript, no algorithm design, no debugging
+ *
+ * Code Example Role: Illustrative (pseudocode and flowcharts only)
+ */
+
+import StationLayout from '../../layouts/StationLayout.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+import SecretNumberFlowchart from '../../components/SecretNumberFlowchart.astro';
+
+const introContent = `
+    <p><strong>Welcome to Station 2!</strong> After Station 1, I was feeling pretty good about describing behavior in plain language. Then I tried explaining my Secret Number Game idea to Grace Hopper.</p>
+    <p class="mt-1">"So the game picks a number, and then you guess, and then it tells you if you're right..." I started. Grace listened carefully, then asked me to repeat it. Halfway through, I realized I was explaining it differently than I had before.</p>
+
+
+
+<p class="mt-1">I know I’m a robot, and everyone expects robots to be perfectly logical. The truth is, I still make mistakes, and that made me want to understand how I could become better at thinking things through.</p>
+
+    <p class="mt-1">Prof. Teeters overheard me struggling. "Writing good code is all about the logic. If your logic only exists in your head," she said, "it can't be reviewed, shared, or improved. <strong>Pseudocode</strong> and <strong>flowcharts</strong> can give your ideas a shape."</p>
+
+    <p class="mt-1">I guess if using logic doesn't happen automatically for me, a robot, it might not happen for others as well. We have to learn computational thinking—how to break ideas down, describe behavior, and slow our thinking—before we can start becoming a good coder. Let me show you some tools that can help turn invisible ideas into something shareable... 🟠</p>
+`;
+---
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->
+<StationLayout stationNumber={2} title='Communicating Logic' subtitle='Turning ideas into shared representations' description='Learn why developers write logic down using pseudocode and flowcharts before coding. HAP discovers that visible logic can be reviewed and improved.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1759495998/hap-laptop_xiewar.jpg' avatarAlt='HAP sitting at a laptop, ready to learn about representing logic' introContent={introContent} ogImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1759495998/hap-laptop_xiewar.jpg' nextStationTitle='Refining Logic' footerReminder="Write it down so others can follow. If logic stays in your head, it can't be shared or improved." labName='Computational Thinking'>
+  <!-- ============================================================
+         SECTION 1: What You'll Learn
+         ============================================================ -->
+  <section class='content-section'>
+    <h2 class='section-heading-centered'>What You'll Learn at This Station</h2>
+
+    <div class='intro-box'>
+      <p><strong>HAP's Discovery:</strong> I used to think my ideas were clear because they made sense to me. But when I tried to share them, I realized that logic living only in my head couldn't be reviewed, questioned, or improved. Here are the three insights that changed how I communicate my thinking.</p>
+    </div>
+
+    <div class='overview-grid mt-2'>
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>📝</span> Logic Is Invisible Until You Write It</h3>
+        <p class='stat-large'>Think → Write → Then Code</p>
+        <p>Ideas in your head can shift and change without you noticing. Writing them down makes them concrete and reviewable.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>🔄</span> Same Idea, Different Representations</h3>
+        <p class='stat-large stat-teal'>Text or Visual, Same Logic</p>
+        <p>The same logic can be written as text (pseudocode) or drawn as a diagram (flowchart). Neither is more correct—they're different views of the same thinking.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>🤝</span> Clarity Enables Collaboration</h3>
+        <p class='stat-large stat-brown'>Unwritten Logic Breaks</p>
+        <p>When logic is written down, others can follow it, find gaps, and suggest improvements. Unwritten logic can't be shared or fixed.</p>
+      </div>
+    </div>
+
+    <div class='hap-note-callout'>
+      <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759495999/hap-confused-map_q8q0ej.jpg' alt='HAP looking confused while studying a map' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+      <div class='hap-note-content'>
+        <h3>HAP's Confession:</h3>
+        <ul>
+          <li>I explained my game idea out loud to Grace, but when she tried to follow it, she interpreted it completely differently than I meant.</li>
+          <li>I thought my logic was "obvious"—until I tried to write it down and realized I was skipping steps without noticing. 😳</li>
+          <li>I changed my explanation each time Grace asked me to repeat it, which meant my logic was never actually consistent.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 2: Why Write Logic Down?
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Why Write Logic Down?</h2>
+
+      <p class='mb-2'>In Station 1, we learned to describe behavior clearly in our heads. But here's what I discovered: logic that only exists in your head has some serious problems.</p>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>It Changes Without You Noticing</h3>
+          <p>Every time I explained my game, I said it slightly differently. Written logic stays the same until you deliberately change it.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Others Can't Review It</h3>
+          <p>If my logic is only in my head, no one else can check it for mistakes. Written logic can be examined and questioned.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>You Can't See the Gaps</h3>
+          <p>My brain filled in missing steps automatically. When I wrote things down, the gaps became obvious.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>It Can't Be Improved</h3>
+          <p>How can someone suggest a better approach if they can't see your current one? Written logic invites collaboration.</p>
+        </div>
+      </div>
+
+      <div class='hap-note-callout mt-2'>
+        <div class='hap-note-content'>
+          <h3>🟠 HAP's Insight:</h3>
+          <p>Prof. Teeters told me: "Developers don't write things down because they have bad memories. They write things down because written logic can be reviewed, shared, and improved. Logic in your head can only be guessed at."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 3: Two Ways to Represent Logic
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Two Ways to Represent Logic</h2>
+
+      <p class='mb-2'>Prof. Teeters introduced me to two tools that developers use to write down logic <em>before</em> they write code. These aren't coding tools—they're thinking and communication tools.</p>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>Pseudocode (Text)</h3>
+          <p>Logic written as plain-language instructions with a simple structure. It reads like a recipe: step by step, with clear decisions marked.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Flowcharts (Visual)</h3>
+          <p>Logic drawn as shapes connected by arrows. You can see the entire flow at once, including where paths branch and rejoin.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Same Logic, Different Views</h3>
+          <p>Both represent the exact same behavior. Pseudocode is easier to read aloud; flowcharts show the big picture at a glance.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Neither Is "More Correct"</h3>
+          <p>Some people prefer text, others prefer diagrams. Real developers use both depending on the situation and audience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 4: The Secret Number Game in Pseudocode
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>The Secret Number Game in Pseudocode</h2>
+
+      <p class='mb-2'>Remember the Secret Number Game from Station 1? Here's how it looks when written as pseudocode. Notice how each line describes one clear action or decision.</p>
+
+      <div class='prompt-box'>
+        <div class='prompt-label'>Pseudocode representation:</div>
+        <CodeBlock
+          code={`BEGIN
+    DISPLAY "Welcome to the Secret Number Game!"
+    DISPLAY "I am thinking of a number."
+    DISPLAY "Can you guess what it is?"
+
+    INPUT guess
+
+    IF guess is correct THEN
+        DISPLAY "You win!"
+    ELSE
+        DISPLAY "Wrong guess. Try again next time!"
+    ENDIF
+
+    DISPLAY "Thanks for playing!"
+END`}
+          lang='text'
+        />
+      </div>
+
+      <div class='analysis-grid mt-2'>
+        <div class='analysis-point'>
+          <h3>BEGIN and END</h3>
+          <p>These markers show where the program starts and finishes. Everything between them happens in order, from top to bottom.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>DISPLAY</h3>
+          <p>Shows a message to the player. The exact text appears in quotation marks—this is the program "talking" to the user.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>INPUT</h3>
+          <p>Pauses and waits for the player to type something. Whatever they type gets stored with the label <code>guess</code>.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>IF / THEN / ELSE / ENDIF</h3>
+          <p>A decision point. Only ONE of the two paths will happen—never both. The condition is written in plain language: "guess is correct".</p>
+        </div>
+      </div>
+
+      <div class='intro-box mt-2'>
+        <p><strong>Indentation Shows Structure:</strong></p>
+        <p class='mt-1'>Notice how the lines inside BEGIN/END are indented (pushed to the right)? And the lines inside IF/ELSE are indented even more? This isn't decoration—it's visual structure.</p>
+        <ul class='mt-1'>
+          <li><strong>Indented lines belong to the thing above them.</strong> The DISPLAY and INPUT lines belong inside the main program (between BEGIN and END).</li>
+          <li><strong>Deeper indentation means "inside of inside."</strong> The "You win!" message is indented extra because it's inside the IF, which is already inside the main program.</li>
+          <li><strong>Matching indentation levels show parallel options.</strong> "You win!" and "Wrong guess" are at the same level because they're the two choices inside the IF/ELSE.</li>
+        </ul>
+        <p class='mt-1'>Grace pointed out that I could read the structure just by looking at the left edge, without reading any words. The shape of the indentation tells you what belongs together.</p>
+      </div>
+
+      <div class='hap-note-callout mt-2'>
+        <div class='hap-note-content'>
+          <h3>🟠 What I Noticed:</h3>
+          <p>When I read the pseudocode out loud, it sounds like I'm telling someone the steps. "First, display a welcome message. Then, get input from the player. Then, if the guess is correct, display 'You win!'" It's like a recipe for the computer to follow. And the indentation shows me which steps are "sub-steps" of bigger steps—like an outline for an essay, but for logic.</p>
+          <p class='mt-1'>I asked Grace about the uppercase words like BEGIN and DISPLAY. "Consistent formatting is not decoration," she said. "Code is read by humans far more often than it is written. Standard conventions—uppercase keywords, consistent indentation—reduce cognitive load, reveal errors, and allow teams to collaborate without debating style. <strong>Professional developers treat formatting as seriously as the logic itself."</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 5: The Secret Number Game as a Flowchart
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>The Secret Number Game as a Flowchart</h2>
+
+      <p class='mb-2'>The same logic can be drawn as a flowchart. Each shape represents a different type of step, and arrows show the flow from one step to the next.</p>
+
+      <SecretNumberFlowchart />
+
+      <div class='intro-box'>
+        <p><strong>Flowchart Shape Guide:</strong></p>
+        <ul class='mt-1'>
+          <li><strong>Oval (yellow)</strong> — Start or end of the program</li>
+          <li><strong>Rectangle (blue)</strong> — An action (display, input)</li>
+          <li><strong>Diamond (purple)</strong> — A decision point (IF condition)</li>
+          <li><strong>Arrows</strong> — Show which step comes next</li>
+        </ul>
+      </div>
+
+      <div class='analysis-grid mt-2'>
+        <div class='analysis-point'>
+          <h3>Following the Flow</h3>
+          <p>Start at the top oval and follow the arrows down. Each box is one step. When you hit a diamond, you choose a path based on the condition.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>The Decision Diamond</h3>
+          <p>The purple diamond asks "guess is correct?" with two exits: one for yes, one for no. This is the same IF/ELSE we saw in pseudocode.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Paths Rejoin</h3>
+          <p>Both paths (win or lose) eventually lead to "Thanks for playing!" The flowchart makes this merging obvious.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>The Big Picture</h3>
+          <p>Unlike pseudocode, you can see the entire game at once. The visual makes the "fork in the road" nature of decisions really clear.</p>
+        </div>
+      </div>
+
+      <div class='hap-note-callout mt-2'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230522/hap-thumbs-up_s4si0j.jpg' alt='HAP giving a confident thumbs up' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
+          <h3>🟠 What I Noticed:</h3>
+          <p>When Prof. Teeters showed me both versions, I noticed the flowchart makes the "fork in the road" really obvious. The diamond shape practically shouts "decision time!" But the pseudocode was much faster to create and easier to read out loud, like telling someone the steps. Prof. Teeters asked me which one I'd use to explain the game to a friend. I realized: it depends on the friend!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 6: Comparing Representations
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Comparing Representations</h2>
+
+      <p class='mb-2'>Here's how the same logic looks in both formats, side by side. Notice that every piece of pseudocode has a matching element in the flowchart.</p>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>BEGIN → Start Oval</h3>
+          <p>The <code>BEGIN</code> keyword in pseudocode is the same as the "start" oval at the top of the flowchart.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>DISPLAY → Blue Rectangle</h3>
+          <p>Each <code>DISPLAY</code> line becomes a blue rectangle box showing the message.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>IF/ELSE → Purple Diamond</h3>
+          <p>The decision structure becomes a diamond with two paths branching out.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>END → Converging Flow</h3>
+          <p>The <code>END</code> keyword matches where all paths flow toward the final output.</p>
+        </div>
+      </div>
+
+      <div class='hap-note-callout mt-2'>
+        <div class='hap-note-content'>
+          <h3>🟠 The Key Takeaway:</h3>
+          <p>The behavior is identical in both representations. The pseudocode says "IF guess is correct THEN display 'You win!' ELSE display 'Wrong guess.'" The flowchart shows the same thing with a diamond and two paths. Different format, same logic. That's the whole point!</p>
+          <p class='mt-1'><strong>Pseudocode</strong> is easier to read aloud, works well for step-by-step explanations, and shows the exact sequence of instructions—but you have to read it top to bottom to understand the flow. <strong>Flowcharts</strong> let you see the entire logic at a glance, make branching paths obvious, and help visual thinkers—but they take more space and can get messy with complex logic. Use whichever helps you think or communicate best for the situation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION: Quick Reference
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='tips-container'>
+      <h2 class='section-heading-centered'>🎓 Communicating Logic Quick Reference</h2>
+
+      <div class='tip-card'>
+        <div class='tip-number'>1</div>
+        <div>
+          <h3>Write It Down</h3>
+          <p>Logic in your head can't be reviewed or improved. Written logic can be examined, questioned, and fixed by you and others.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>2</div>
+        <div>
+          <h3>Pseudocode = Text Logic</h3>
+          <p>Pseudocode uses plain language with structure: BEGIN/END for boundaries, DISPLAY/INPUT for actions, IF/ELSE for decisions. Indentation shows what belongs inside what.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>3</div>
+        <div>
+          <h3>Flowcharts = Visual Logic</h3>
+          <p>Flowcharts use shapes and arrows: ovals for start/end, rectangles for actions, diamonds for decisions. Follow the arrows to trace the flow.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>4</div>
+        <div>
+          <h3>Same Logic, Different Format</h3>
+          <p>Pseudocode and flowcharts represent the same behavior. Neither is more correct—use whichever helps you think or communicate best.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</StationLayout>

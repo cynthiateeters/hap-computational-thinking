@@ -854,7 +854,7 @@ h4 {
 /* Responsive: Stack on mobile, image on right for desktop */
 @media (min-width: 769px) {
   .intro-box {
-    flex-direction: row-reverse;
+    flex-direction: row;
   }
 }
 

@@ -1,0 +1,299 @@
+---
+/**
+ * Station 4: From Logic to Computational Thinking - HAP Learning Lab
+ *
+ * Learning Intent:
+ * - Primary concept: Computational thinking is a way of thinking that goes beyond logical correctness
+ * - Supporting concepts: Naming patterns HAP already practiced; shared vocabulary enables recognition
+ * - Non-goals: No new code, no exercises, no technical artifacts
+ *
+ * Code Example Role: None - this is a reflective station
+ *
+ * Narrative Arc: Story of realization, not instruction
+ * - HAP recognizes the thinking he has been using has a name
+ * - The Four Pillars are labels for behaviors already demonstrated
+ */
+
+import StationLayout from '../../layouts/StationLayout.astro';
+
+const introContent = `
+    <p><strong>Welcome to Station 4!</strong> I think my Secret Number Game works now. The logic is correct. The loop does what it should. I traced through it, found the problem, and fixed it.</p>
+    <p class="mt-1">But I found myself wondering: what if I wanted to build something bigger? A real game, like the ones on my roboPhone. It would be so cool to have something with more rules, more choices, more things happening at once.</p>
+    <p class="mt-1">I asked Grace about this, and she said something that surprised me. She said that logic alone would not be enough. There was a different kind of thinking I would need—and apparently, I had already begun using it.</p>
+    <p class="mt-1">Let me tell you what I discovered... 🟠</p>
+`;
+---
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->
+<StationLayout stationNumber={4} title='From Logic to Computational Thinking' subtitle='Naming the thinking you have already practiced' description='HAP discovers that the problem-solving approach he has been using has a name: computational thinking. Learn why this way of thinking matters for building beyond simple programs.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1763230331/hap-brain-explodes_wu0or8.jpg' avatarAlt='HAP having a realization about the kind of thinking he has been using' introContent={introContent} ogImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1763230331/hap-brain-explodes_wu0or8.jpg' nextStationTitle='Station 5' footerReminder='Logic tells you if something is correct. Computational thinking helps you approach problems so you can solve them—and explain how you did it.' labName='Computational Thinking'>
+  <!-- ============================================================
+       SECTION 1: What You'll Learn
+       ============================================================ -->
+  <section class='content-section'>
+    <h2 class='section-heading-centered'>What You'll Learn at This Station</h2>
+
+    <div class='intro-box'>
+      <p><strong>HAP's Discovery:</strong> I thought I was just fixing a game. But the way I approached the problem—breaking it apart, noticing patterns, focusing on what mattered, describing steps clearly—turns out there is a name for that. And understanding that name helps me see why this kind of thinking matters.</p>
+    </div>
+
+    <div class='overview-grid mt-2'>
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>🧠</span> Logic Is Not Enough</h3>
+        <p class='stat-large'>Correctness Is Just the Start</p>
+        <p>Logic helps you decide whether an idea is correct or incorrect. It tells you when something makes sense. But correctness alone does not tell you how to approach a problem, how to break it apart, or how to explain your thinking to someone else.</p>
+        <p class='mt-1'>As problems grow more involved, relying only on logic makes it harder to move forward with confidence. Developers need more than correct answers. They need ways of thinking that help them decide what to focus on, what to ignore, and how to move step by step toward a solution.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>🏷️</span> We Already Did This</h3>
+        <p class='stat-large stat-teal'>Experience Before Names</p>
+        <p>You practiced it with me in the earlier stations when we:</p>
+
+        <ul class='mt-1'>
+          <li>broke the game into parts</li>
+          <li>noticed repeated behavior</li>
+          <li>focused only on what affected the outcome</li>
+          <li>described steps clearly enough to follow again</li>
+        </ul>
+
+        <p class='mt-1'>Only now do we give this way of thinking a name. Naming it does not change the work you did. It helps you recognize it, remember it, and apply it again when you face a new problem.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>🔗</span> Shared Language Helps</h3>
+        <p class='stat-large stat-brown'>Names Create Recognition</p>
+        <p>Experienced developers naturally break problems down, look for patterns, zero-in on a problem, and immediately work in steps without thinking about their process.</p>
+
+        <p class='mt-1'>For new developers, this workflow does not happen automatically. It is a skill that grows through repeated use. Naming ways of thinking builds the mental habits that make patterns easier to spot over time.</p>
+
+        <p class='mt-1'>This is why naming ways of thinking matters. It helps good ideas travel—and it helps you build the mental muscle to recognize when to use them.</p>
+      </div>
+    </div>
+
+    <div class='hap-note-callout'>
+      <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759495999/hap-confused-map_q8q0ej.jpg' alt='HAP looking confused while studying a map' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+      <div class='hap-note-content'>
+        <h3>HAP's Confession:</h3>
+        <ul>
+          <li>I thought that once my logic was correct, I was done learning how to think. I was wrong.</li>
+          <li>When Grace mentioned "computational thinking," I worried it was something complicated I had not done yet. But she explained I had been doing it all along.</li>
+          <li>I used to think developers just "knew" how to solve problems. Now I understand they have practiced a specific way of approaching them.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2: Ambition Beyond the Game
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Wanting to Build More</h2>
+
+      <p class='mb-2'>After fixing my Secret Number Game, I felt accomplished. The game worked! The loop was correct. Players could guess until they won. But satisfaction quickly turned into curiosity.</p>
+
+      <p class='mb-2'>The Secret Number Game taught me so much—how to describe behavior, write it down, trace it step by step, and fix what was broken. But now that it was complete, I found myself wanting more.</p>
+
+      <div class='intro-box'>
+        <p>I told Grace: "This game is nice, but it is so simple. I want to build something bigger. Something like the games on my roboPhone—with levels, and characters, and things happening all at once."</p>
+        <p class='mt-1'>Grace nodded. "You have ambition. That is good. But tell me—do you think the same kind of thinking that fixed your guessing game will work for a game with hundreds of rules and thousands of possible states?"</p>
+      </div>
+
+      <p class='mt-2'>I had not thought about that. My game had one secret number, one guess, one loop. What happens when there are many things to track at the same time?</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3: Grace Sets the Boundary
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Logic Has Limits</h2>
+
+      <p class='mb-2'>Grace explained something that changed how I think about problem-solving.</p>
+
+      <div class='hap-note-callout'>
+        <div class='hap-note-content'>
+          <h3>What Grace Told Me:</h3>
+          <p>"Logic helps you decide whether something makes sense. If this, then that. True or false. Correct or incorrect."</p>
+          <p class='mt-1'>"But logic by itself will not carry you very far. Logic does not tell you how to break a big problem into small pieces. It does not tell you which details matter and which to ignore. It does not help you recognize that this problem is similar to one you solved before."</p>
+          <p class='mt-1'>"There is a different kind of thinking you will need. It has a name: computational thinking."</p>
+        </div>
+      </div>
+
+      <p class='mt-2'>She did not explain what it was. She just named it and sent me to Prof. Teeters to understand why it mattered.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: Seeking Understanding - removed
+       ============================================================ -->
+
+  <!-- ============================================================
+       SECTION 5: Naming the Four Pillars
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>The Four Pillars of Computational Thinking</h2>
+
+      <p class='mt-1'>I found Prof. Teeters and asked her: "Grace said I need something called computational thinking. What is it? And why does it matter?"</p>
+
+      <p class='mt-1'>Prof. Teeters explained we can describe this kind of problem-solving using four pillars.</p>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>Decomposition</h3>
+          <p>Breaking a problem into smaller parts so each piece can be understood and worked on. I did this when I looked at the game piece by piece instead of all at once.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Pattern Recognition</h3>
+          <p>Identifying repeated behavior so solutions do not need to be reinvented. I did this when I noticed the guess-and-check was repeating and could be a loop.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Abstraction</h3>
+          <p>Focusing on what matters and setting aside details that do not affect the outcome. I did this when I traced only the relevant parts to find the flaw.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Algorithmic Thinking</h3>
+          <p>Describing steps clearly so a solution can be followed again and again. I did this when I wrote pseudocode that anyone could trace through.</p>
+        </div>
+      </div>
+
+      <div class='hap-note-callout mt-2'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230331/hap-brain-explodes_wu0or8.jpg' alt='HAP having a mind-blowing realization' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
+          <h3>🟠 The Moment It Clicked:</h3>
+          <p>I recognized every single one of these. I was not learning something new—I was learning the names for things I had already practiced.</p>
+          <p class='mt-1'>Prof. Teeters nodded. "You were not just fixing a game. You were practicing how developers think."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6: Why Computational Thinking Matters
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Why This Thinking Matters</h2>
+
+      <p class='mb-2'>Prof. Teeters explained that computational thinking is not just about solving one problem. It is about solving problems in a way that scales—that works even when things get complicated.</p>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>Solutions Can Be Automated</h3>
+          <p>When you describe steps clearly enough, a computer can carry them out. That is how programs work.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Solutions Can Be Reused</h3>
+          <p>When you recognize patterns, you can apply solutions to similar problems without starting over.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Solutions Can Be Tested</h3>
+          <p>When you break things into parts, you can test each part separately to find where problems hide.</p>
+        </div>
+      </div>
+
+      <div class='intro-box mt-2'>
+        <p><strong>The difference:</strong></p>
+        <p class='mt-1'>Logic answers: "Is this correct?"</p>
+        <p class='mt-1'>Computational thinking answers: "How do I approach this so I can figure out what to do?"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7: HAP's Realization
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>What I Now Understand</h2>
+
+      <p class='mb-2'>I sat with this for a while. My game is simple—just one loop, one check, one secret number. But the way I approached fixing it is the same way developers approach much bigger problems.</p>
+
+      <div class='intro-box'>
+        <p>I know my game is super simple and not the real world. If I want to build things that work beyond this game, I cannot just think logically. I need a way of thinking and communicating that stays effective even as what I am building becomes more complex.</p>
+      </div>
+
+      <p class='mt-2'>The Four Pillars are not rules to memorize. They are names for behaviors that become natural with practice. And now that I know the names, I can recognize when I am using them—and when I am not.</p>
+
+      <div class='hap-note-callout mt-2'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230522/hap-thumbs-up_s4si0j.jpg' alt='HAP giving a confident thumbs up' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
+          <h3>🟠 What Changed for Me:</h3>
+          <p>Before this station, I thought I was just "trying stuff" until things worked. Now I see that I was following an approach—an approach that professionals use every day.</p>
+          <p class='mt-1'>Understanding this does not make me an expert. But it helps me recognize what I am doing and why it works.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8: Preparing for What Comes Next
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>One More Thing I Noticed</h2>
+
+      <p class='mb-2'>As I reflected on everything I had learned, something else occurred to me.</p>
+
+      <p>Right now, all of this understanding exists only in my head. I know how the game works. I know why the loop failed. I know how I fixed it. But if I step away for a while—or if someone else looks at my code—will they understand what I was thinking?</p>
+
+      <div class='intro-box'>
+        <p>The reasoning behind my decisions is not written down anywhere. If I forget, or if I need to explain it to someone else, I would have to figure it all out again.</p>
+        <p class='mt-1'>That seems like a problem. Especially if I want to build bigger things with other people.</p>
+      </div>
+
+      <p class='mt-2'>Prof. Teeters noticed me thinking about this. "You are right to wonder," she said. "Developers do not just solve problems—they record their reasoning so it can be understood later. That is what we will look at next."</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION: Quick Reference
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='tips-container'>
+      <h2 class='section-heading-centered'>🎓 Computational Thinking Quick Reference</h2>
+
+      <div class='tip-card'>
+        <div class='tip-number'>1</div>
+        <div>
+          <h3>Decomposition</h3>
+          <p>Break big problems into smaller, manageable pieces. Do not try to understand everything at once—focus on one part at a time.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>2</div>
+        <div>
+          <h3>Pattern Recognition</h3>
+          <p>Look for repeated behavior or similarities. When you recognize patterns, you can reuse solutions instead of reinventing them.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>3</div>
+        <div>
+          <h3>Abstraction</h3>
+          <p>Focus on what matters and ignore what does not. Not every detail is relevant to solving the problem at hand.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>4</div>
+        <div>
+          <h3>Algorithmic Thinking</h3>
+          <p>Describe steps clearly and precisely. If someone else (or a computer) can follow your instructions, you have thought algorithmically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</StationLayout>

@@ -1,0 +1,771 @@
+---
+/**
+ * Station 6: AI Assistance for Computational Thinking - HAP Learning Lab
+ *
+ * Learning Intent:
+ * - Primary concept: AI accelerates work, but responsibility/verification/ownership are mandatory
+ * - Supporting concepts: Schema compliance, detailed prompts, understanding > speed
+ * - Non-goals: No AI theory, no trust without verification
+ *
+ * Capstone station completing Week 1 learning arc:
+ * Stations 1-4 (computational thinking) + Station 5 (Git workflow) + Station 6 (AI + PR)
+ */
+
+import StationLayout from '../../layouts/StationLayout.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+
+const introContent = `
+    <p><strong>Welcome to Station 6!</strong> After setting up Magic Quotes locally, I was ready to create my contribution. I needed developer wisdom quotes about computational thinking—and I thought: "AI could help me generate these in seconds!"</p>
+    <p class="mt-1">I asked an AI assistant to generate quotes, copied the output immediately, and ran <code>npm run validate</code>. Everything failed. The AI had used wrong category names, duplicate IDs, and quotes that had nothing to do with computational thinking.</p>
+    <p class="mt-1">Prof. Teeters sat me down: "HAP, AI can generate code faster than you can type, but it doesn't understand your project's requirements unless you explain them. You own every line of code, whether you wrote it or AI did."</p>
+    <p class="mt-1">That lesson changed how I work with AI completely. Let me show you what I learned about using AI responsibly—the prompts that work, the verification that's mandatory, and the rules that ensure quality! 🟠</p>
+`;
+---
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->
+<StationLayout stationNumber={6} title='AI Assistance for Computational Thinking' subtitle="AI helps you work faster, but you're still responsible for quality and correctness" description='Join HAP as he learns to use AI responsibly for creating his Magic Quotes contribution. Discover effective prompting, schema validation, Git workflows, and the rules for working with AI assistants like GitHub Copilot, ChatGPT, or Claude.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1759495998/hap-laptop_xiewar.jpg' avatarAlt='HAP (HyBit A. ProtoBot) studying on his laptop' introContent={introContent} ogImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1759495998/hap-laptop_xiewar.jpg' footerReminder='Schema first, verify always, understand everything. AI is your assistant, but you own the code.' labName='Computational Thinking'>
+  <!-- ============================================================
+         SECTION 1: What You'll Learn
+         3 insight cards about AI responsibility + HAP's confession
+         ============================================================ -->
+  <section class='content-section'>
+    <h2 class='section-heading-centered'>What You'll Learn</h2>
+
+    <div class='overview-grid mt-2'>
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>⚡</span> Speed with Responsibility</h3>
+        <p class='stat-large'>Fast ≠ Good</p>
+        <p><strong>AI generates code in seconds, but verification takes you minutes.</strong></p>
+        <p>I asked AI to generate quotes without any requirements. It produced generic motivational quotes in 3 seconds. None of them matched Magic Quotes' schema or theme. I spent 15 minutes debugging. When I provided detailed requirements upfront (schema fields, category, tone, theme), AI generated exactly what I needed in 5 seconds—and validation passed immediately.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>🎯</span> Detailed Prompts = Quality</h3>
+        <p class='stat-large stat-teal'>Specific > Vague</p>
+        <p><strong>Vague prompts produce vague results. Detailed prompts produce professional code.</strong></p>
+        <p>"Generate quotes" gave me useless output. "Generate 5 computational-thinking quotes, category 'developer-wisdom', tone 'reflective', 10-20 words each, following schema with fields id/category/tone/text/source" gave me production-ready JSON. Prof. Teeters taught me: the quality of AI output depends entirely on the quality of your prompt.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>✅</span> You Own Every Line</h3>
+        <p class='stat-large stat-brown'>AI Assists, You Decide</p>
+        <p><strong>Whether you typed it or AI generated it, you're responsible for correctness.</strong></p>
+        <p>I copied AI output without understanding it. When Prof. Teeters asked why I chose those specific quotes, I couldn't explain. She reminded me: "Speed without understanding is technical debt. If you can't explain what the code does, you don't own it yet." Now I verify, test, and understand before committing anything.</p>
+      </div>
+    </div>
+
+    <div class='hap-note-callout'>
+      <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230414/hap-broke-things_qtbum4.jpg' alt='HAP looking embarrassed about AI mistakes' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+      <div class='hap-note-content'>
+        <h3>HAP's Confession: I Shipped AI Code Without Verification</h3>
+        <p>I was so excited about AI's speed that I asked my AI assistant to generate my quote-hap.json file, copied the entire output, and immediately committed it to Git. I thought: "This looks right! AI must know what it's doing!"</p>
+        <p class='mt-1'>When I ran <code>npm run validate</code>, everything failed. AI had invented category names that didn't exist in the schema ("inspiration" instead of "developer-wisdom"). It used duplicate IDs. The quotes were generic motivational sayings, not computational thinking wisdom. I had to delete everything and start over.</p>
+        <p class='mt-1'>Prof. Teeters' lesson stuck with me: "AI doesn't know your project's rules unless you explicitly provide them. Always verify. Always understand. You own the code—the responsibility doesn't transfer to the AI." Now I treat AI output like a first draft, not the final answer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 2: What AI Can and Can't Do
+         Strengths and weaknesses grid
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>What AI Can and Can't Do for Computational Thinking</h2>
+      <p class='mb-2'>When I first discovered AI coding assistants, I thought they were magic—tools that could write perfect code instantly. Whether you use GitHub Copilot in VS Code, ChatGPT, Claude, or another AI assistant, the principles are the same. Prof. Teeters helped me understand what AI actually excels at and where it struggles. Understanding these boundaries is critical for responsible use.</p>
+
+      <div class='analysis-grid mt-2'>
+        <div class='analysis-point'>
+          <h3>AI Excels At</h3>
+          <ul class='mt-1'>
+            <li><strong>Pattern recognition:</strong> AI has seen millions of JSON files and recognizes correct structure instantly</li>
+            <li><strong>Generating variations:</strong> Create multiple options quickly (5 quotes with different tones, all matching a template)</li>
+            <li><strong>Following explicit rules:</strong> When you provide schema requirements clearly, AI follows them precisely</li>
+            <li><strong>Handling repetition:</strong> AI never gets bored creating similar entries with consistent formatting</li>
+            <li><strong>Syntax correctness:</strong> AI produces valid JSON, proper punctuation, correctly escaped strings</li>
+            <li><strong>Speed:</strong> What takes you 20 minutes of typing takes AI 5 seconds to generate</li>
+          </ul>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>AI Struggles With</h3>
+          <ul class='mt-1'>
+            <li><strong>Understanding context:</strong> AI doesn't know what Magic Quotes is or why your project exists</li>
+            <li><strong>Project-specific rules:</strong> AI can't read your schema file unless you paste it into the prompt</li>
+            <li><strong>Judgment calls:</strong> AI can't decide which quotes are "good" for computational thinking vs. generic advice</li>
+            <li><strong>Validation:</strong> AI generates code but doesn't run <code>npm run validate</code> to test it</li>
+            <li><strong>Learning intent:</strong> AI optimizes for speed, not for helping YOU understand what it generated</li>
+            <li><strong>Originality:</strong> AI combines patterns it's seen before; it doesn't think creatively about new problems</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class='hap-note-callout mt-3'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759495998/hap-laptop_xiewar.jpg' alt='HAP working on his laptop' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
+          <h3>HAP's Takeaway: AI as Pattern Matcher, Not Thinker</h3>
+          <p>AI was excellent at generating valid JSON syntax once I showed it the schema. It never made typos, always closed brackets correctly, and formatted everything beautifully. That's pattern recognition—AI has seen millions of JSON files and knows the structure cold.</p>
+          <p class='mt-1'>But AI failed completely at understanding WHICH quotes mattered for computational thinking. It gave me motivational sayings like "Believe in yourself!" because it had seen similar quotes in other datasets. It didn't understand the difference between generic inspiration and developer wisdom about problem-solving.</p>
+          <p class='mt-1'>That's when I realized: AI is a pattern matcher, not a thinker. It excels at structure and syntax. It struggles with meaning and judgment. My job is to provide the judgment (what makes a good computational thinking quote), and AI handles the structure (correct JSON format). Together, we're faster—but only if I stay in control.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 3: First Specific Topic Example with AI
+         Vague prompt → Bad output → Detailed prompt → Good output
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Generating Developer Wisdom Quotes with AI</h2>
+      <p class='mb-2'>My first task was creating quotes for quote-hap.json. I knew Magic Quotes needed developer wisdom about computational thinking, but I didn't understand yet how to communicate that effectively to AI. My early prompts were disasters because I assumed AI understood context it didn't have.</p>
+
+      <h3 class='mt-3'>Before I Learned to Write Good Prompts</h3>
+      <p class='mt-1'>I typed a vague, one-sentence request into GitHub Copilot. I thought being brief was efficient. I was wrong—vague prompts waste time because you have to regenerate everything.</p>
+
+      <div class='warning-box mt-2'>
+        <h3>❌ Vague Prompt Produces Unusable Code</h3>
+        <p><strong>My vague prompt:</strong></p>
+        <div class='prompt-box mt-1'>
+          <div class='prompt-label'>What I Asked AI:</div>
+          <CodeBlock code={`Generate some developer quotes for my JSON file`} lang='text' />
+        </div>
+
+        <p class='mt-2'><strong>What AI generated:</strong></p>
+        <CodeBlock
+          code={`{
+  "entries": [
+    {
+      "id": "quote-1",
+      "text": "Code is poetry written in logic.",
+      "category": "inspiration"
+    },
+    {
+      "id": "quote-2",
+      "text": "Dream big, code bigger!",
+      "category": "motivation"
+    }
+  ]
+}`}
+          lang='json'
+        />
+
+        <p class='mt-1'><strong>Problems with this code:</strong></p>
+        <ul class='mt-1'>
+          <li><strong>Invalid category names</strong> — "inspiration" and "motivation" don't exist in Magic Quotes schema (should be "developer-wisdom")</li>
+          <li><strong>Missing required fields</strong> — No `author`, `about`, `tone`, or `source` fields that the schema requires</li>
+          <li><strong>Generic, off-theme quotes</strong> — These are motivational sayings, not computational thinking wisdom</li>
+          <li><strong>Wrong structure</strong> — Missing top-level fields, just started with `entries` array</li>
+        </ul>
+      </div>
+
+      <h3 class='mt-3'>The Prompt I Learned to Write</h3>
+      <p class='mt-1'>Prof. Teeters showed me how to provide explicit requirements. Instead of assuming AI knows your project, TELL it every constraint. The prompt became longer, but the output became perfect on the first try.</p>
+
+      <div class='prompt-box mt-2'>
+        <div class='prompt-label'>✅ Detailed Prompt with All Requirements:</div>
+        <CodeBlock
+          code={`Generate a JSON file for Magic Quotes with 3 developer wisdom quotes about computational thinking.
+
+Required schema structure:
+{
+  "author": "HAP",
+  "about": "Developer wisdom about computational thinking from HAP's learning journey",
+  "entries": [
+    {
+      "id": "string (must be unique, format: hap-001, hap-002, etc)",
+      "category": "developer-wisdom" (exact string, no other values allowed),
+      "tone": "reflective" or "encouraging" (only these two options),
+      "text": "string (10-20 words, focused on computational thinking concepts)",
+      "source": "ai-assisted"
+    }
+  ]
+}
+
+Requirements for quotes:
+- Focus on: breaking down problems, thinking logically, learning from mistakes
+- Plain language, no jargon
+- Actionable and specific, not vague motivation
+- Each quote should teach something about HOW to think computationally`}
+          lang='text'
+        />
+      </div>
+
+      <h3 class='mt-3'>What AI Generates with a Good Prompt</h3>
+      <div class='prompt-box mt-2'>
+        <div class='prompt-label'>✅ AI Output with Detailed Constraints:</div>
+        <CodeBlock
+          code={`{
+  "author": "HAP",
+  "about": "Developer wisdom about computational thinking from HAP's learning journey",
+  "entries": [
+    {
+      "id": "hap-001",
+      "category": "developer-wisdom",
+      "tone": "reflective",
+      "text": "Before writing code, describe the behavior. Clear thinking prevents unclear code.",
+      "source": "ai-assisted"
+    },
+    {
+      "id": "hap-002",
+      "category": "developer-wisdom",
+      "tone": "encouraging",
+      "text": "Break problems into smaller steps. Each small solution builds toward the big one.",
+      "source": "ai-assisted"
+    },
+    {
+      "id": "hap-003",
+      "category": "developer-wisdom",
+      "tone": "reflective",
+      "text": "Mistakes aren't failures. They're data showing you what doesn't work yet.",
+      "source": "ai-assisted"
+    }
+  ]
+}`}
+          lang='json'
+        />
+        <p class='code-comment mt-1'><strong>Why this code is better:</strong> Valid schema, correct field names, appropriate tone, on-theme content focused on computational thinking. This passed <code>npm run validate</code> immediately with no errors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 4: Second Specific Topic Example with AI
+         More complex: refining and iterating
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Refining Quotes Through Iteration</h2>
+      <p class='mb-2'>After generating my first set of quotes, I realized they were technically correct (schema-valid) but not quite right thematically. I needed quotes that specifically referenced Stations 1-5 concepts. This required a more sophisticated prompt with contextual requirements.</p>
+
+      <h3 class='mt-3'>The Task: Context-Aware Quote Generation</h3>
+      <p class='mt-1'>I wanted quotes that directly referenced the learning journey: thinking logically (Station 1), pseudocode (Station 2), debugging (Station 3), naming patterns (Station 4), and Git workflows (Station 5). Generic computational thinking quotes weren't enough—I needed specificity.</p>
+
+      <h3 class='mt-3'>My Comprehensive Prompt</h3>
+      <div class='prompt-box mt-2'>
+        <div class='prompt-label'>✅ Context-Rich Prompt:</div>
+        <CodeBlock
+          code={`Generate 5 more developer wisdom quotes for Magic Quotes. Each quote should reference a specific station concept:
+
+Station 1 - Thinking Logically: Describing behavior before code
+Station 2 - Communicating Logic: Pseudocode and flowcharts
+Station 3 - Reasoning and Correcting: Debugging and tracing
+Station 4 - Computational Thinking: Naming patterns and abstraction
+Station 5 - Git Workflow: Forking, cloning, validation
+
+Requirements (same as before):
+- Schema: id (hap-004 through hap-008), category "developer-wisdom", tone "reflective" or "encouraging", source "ai-assisted"
+- Length: 10-20 words per quote
+- Style: Specific lessons learned, not generic advice
+- Focus: What HAP learned at each station
+
+Make each quote sound like HAP reflecting on what Prof. Teeters taught.`}
+          lang='text'
+        />
+      </div>
+
+      <h3 class='mt-3'>AI-Generated Context-Aware Quotes</h3>
+      <div class='prompt-box mt-2'>
+        <div class='prompt-label'>✅ Professional Output with Thematic Depth:</div>
+        <CodeBlock
+          code={`{
+  "id": "hap-004",
+  "category": "developer-wisdom",
+  "tone": "reflective",
+  "text": "Prof. Teeters taught me: if you can't describe it in plain words, code won't fix it.",
+  "source": "ai-assisted"
+},
+{
+  "id": "hap-005",
+  "category": "developer-wisdom",
+  "tone": "encouraging",
+  "text": "Pseudocode isn't wasted time. It's thinking made visible before fingers touch keys.",
+  "source": "ai-assisted"
+},
+{
+  "id": "hap-006",
+  "category": "developer-wisdom",
+  "tone": "reflective",
+  "text": "Tracing code line-by-line feels slow, but it finds bugs faster than guessing ever will.",
+  "source": "ai-assisted"
+},
+{
+  "id": "hap-007",
+  "category": "developer-wisdom",
+  "tone": "encouraging",
+  "text": "Good names make code readable. If you struggle to name it, you don't understand it yet.",
+  "source": "ai-assisted"
+},
+{
+  "id": "hap-008",
+  "category": "developer-wisdom",
+  "tone": "reflective",
+  "text": "Fork first, clone locally, validate before committing. Workflow prevents chaos.",
+  "source": "ai-assisted"
+}`}
+          lang='json'
+        />
+        <p class='code-comment mt-1'><strong>Why this is excellent:</strong> Each quote references specific station concepts. They sound like HAP's voice (mentioning Prof. Teeters, using first-person reflection). Schema-valid, thematically appropriate, and ready to commit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 5: Schema Compliance - AI's Biggest Blind Spot
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Schema Compliance: AI's Biggest Blind Spot</h2>
+      <p class='mb-2'><strong>This is where AI fails most consistently.</strong> AI doesn't know your project's rules unless you explicitly provide them in every prompt. I learned this the hard way when NONE of my early attempts passed <code>npm run validate</code>.</p>
+
+      <h3 class='mt-3'>The Problem: AI Doesn't Read Your Schema File</h3>
+      <p class='mt-1'>Magic Quotes has a schema defined in <code>data/schema.json</code> that validates all quote files. But AI can't open that file and read it automatically. Unless I paste the schema rules into my prompt, AI invents its own structure—and it's always wrong.</p>
+
+      <h3 class='mt-3'>The Solution: Make Schema Explicit in Every Prompt</h3>
+      <div class='prompt-box mt-2'>
+        <div class='prompt-label'>✅ Schema-First Prompt Template:</div>
+        <CodeBlock
+          code={`Create [task description] following this EXACT schema:
+
+MANDATORY schema (copy-paste from schema.json):
+{
+  "author": "string (your name or identifier)",
+  "about": "string (description of your contribution)",
+  "entries": [
+    {
+      "id": "string (unique, format: yourname-###)",
+      "category": "developer-wisdom" | "debugging" | "learning" (ONLY these values),
+      "tone": "reflective" | "encouraging" | "humorous" (ONLY these values),
+      "text": "string (the actual quote, 10-20 words)",
+      "source": "ai-assisted" | "original" | "adapted"
+    }
+  ]
+}
+
+[Then add your content requirements...]`}
+          lang='text'
+        />
+      </div>
+
+      <h3 class='mt-3'>Before and After: Schema Compliance Comparison</h3>
+
+      <div class='warning-box mt-2'>
+        <h3>❌ AI Code WITHOUT Schema Requirements</h3>
+        <CodeBlock
+          code={`// I asked: "Generate quotes for Magic Quotes"
+// AI invented its own structure:
+{
+  "quotes": [
+    {
+      "id": 1,
+      "text": "Code is art",
+      "type": "inspiration"
+    }
+  ]
+}
+
+// ❌ Wrong top-level key ("quotes" instead of "entries")
+// ❌ Missing "author" and "about" fields
+// ❌ ID is a number instead of a string
+// ❌ "type" doesn't exist in schema (should be "category")
+// ❌ "inspiration" isn't a valid category value`}
+          lang='json'
+        />
+        <p class='mt-1'><strong>This code fails validation.</strong> Running <code>npm run validate</code> produces errors for every field. The structure looks plausible, but doesn't match the project's requirements at all.</p>
+      </div>
+
+      <div class='prompt-box mt-2'>
+        <div class='prompt-label'>✅ AI Code WITH Schema Requirements:</div>
+        <CodeBlock
+          code={`// I pasted the exact schema into my prompt
+// AI followed it precisely:
+{
+  "author": "HAP",
+  "about": "Computational thinking wisdom from HAP's learning journey",
+  "entries": [
+    {
+      "id": "hap-001",
+      "category": "developer-wisdom",
+      "tone": "reflective",
+      "text": "Clear thinking before coding prevents debugging later.",
+      "source": "ai-assisted"
+    }
+  ]
+}
+
+// ✅ Correct top-level structure with "author", "about", "entries"
+// ✅ ID is a string in the required format
+// ✅ Valid category and tone from allowed values
+// ✅ All required fields present`}
+          lang='json'
+        />
+        <p class='code-comment mt-1'><strong>This code passes validation.</strong> <code>npm run validate</code> returns success because every field matches the schema exactly. Zero errors, ready to commit.</p>
+      </div>
+
+      <div class='hap-note-callout mt-3'>
+        <div class='hap-note-content'>
+          <h3>HAP's Schema Checklist: Non-Negotiable Rules</h3>
+          <ul class='mt-1'>
+            <li><strong>Paste the schema into every prompt</strong> — Never assume AI remembers it from previous conversations</li>
+            <li><strong>Validate before committing</strong> — Run <code>npm run validate</code> EVERY time before Git operations</li>
+            <li><strong>Check allowed values</strong> — Schema defines specific options for category/tone; AI invents new ones if you don't list them</li>
+            <li><strong>Verify ID format</strong> — Each project has its own ID conventions (hap-###, not just numbers)</li>
+            <li><strong>Test with the actual validation tool</strong> — "It looks right" doesn't mean it IS right</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 6: Code Quality and Performance
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Ensuring Quote Quality with AI</h2>
+      <p class='mb-2'>Schema compliance makes code work, but quality makes code good. I learned that AI needs explicit guidance about WHAT makes a good computational thinking quote, not just HOW to format it correctly.</p>
+
+      <h3 class='mt-3'>The Quality-Focused Prompt</h3>
+      <div class='prompt-box mt-2'>
+        <div class='prompt-label'>✅ Quality Constraints Prompt:</div>
+        <CodeBlock
+          code={`Generate quotes for Magic Quotes with these quality requirements:
+
+Quality constraints:
+- Concise: 10-20 words maximum (not vague, every word matters)
+- Specific: Reference actual practices (e.g., "trace code line-by-line" not "debug carefully")
+- Actionable: Something a learner can DO, not just feel inspired by
+- Plain language: No jargon, accessible to beginners
+- Focused: About computational thinking, not general programming
+
+Schema: [paste schema here]
+
+Content theme: Lessons from learning computational thinking (Stations 1-5)`}
+          lang='text'
+        />
+      </div>
+
+      <h3 class='mt-3'>Before and After: Quality Comparison</h3>
+
+      <div class='warning-box mt-2'>
+        <h3>❌ Vague, Low-Quality Quotes</h3>
+        <CodeBlock
+          code={`// Without quality constraints:
+{
+  "text": "Always think before you code and make sure to plan ahead for success."
+  // ❌ Too long (15 words)
+  // ❌ Vague ("think before you code" - what does that mean?)
+  // ❌ Generic advice that could apply to anything
+}
+
+{
+  "text": "Use best practices."
+  // ❌ Too short (3 words)
+  // ❌ Completely vague - which practices?
+  // ❌ Not actionable
+}`}
+          lang='json'
+        />
+      </div>
+
+      <div class='prompt-box mt-2'>
+        <div class='prompt-label'>✅ High-Quality, Specific Quotes</div>
+        <CodeBlock
+          code={`// With quality constraints:
+{
+  "text": "Before writing code, describe the behavior. Clear thinking prevents unclear code."
+  // ✅ 12 words (in range)
+  // ✅ Specific action: "describe the behavior"
+  // ✅ Explains WHY: prevents unclear code
+}
+
+{
+  "text": "Break problems into smaller steps. Each small solution builds toward the big one."
+  // ✅ 13 words
+  // ✅ Actionable: "break problems into smaller steps"
+  // ✅ Teaching computational thinking directly
+}`}
+          lang='json'
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 7: Try It Yourself - Creating quote-hap.json
+         ============================================================ -->
+  <section class='content-section'>
+    <h2>Try It Yourself: Create Your Own json File</h2>
+    <p class='mt-1'>Now it's your turn. You've seen how I use AI to generate schema-compliant quotes. Let's walk through creating your own quote file for Magic Quotes using everything you've learned about responsible AI prompting.</p>
+
+    <div class='intro-box mt-2'>
+      <p><strong>Your Challenge:</strong> Create a file called <code>quote-yourname.json</code> in the <code>data/</code> folder with developer wisdom quotes about your learning journey through Stations 1-5.</p>
+      <h4 class='mt-2'>Requirements:</h4>
+      <ul class='mt-1'>
+        <li><strong>Schema compliance:</strong> All required fields (author, about, entries with id/category/tone/text/source)</li>
+        <li><strong>Quote count:</strong> 3-5 quotes minimum</li>
+        <li><strong>Theme:</strong> Computational thinking lessons from Stations 1-5</li>
+        <li><strong>Quality:</strong> Specific, actionable, 10-20 words each</li>
+        <li><strong>Validation:</strong> Must pass <code>npm run validate</code></li>
+      </ul>
+
+      <h4 class='mt-2'>Your Workflow (5 Steps):</h4>
+      <ol class='mt-1'>
+        <li><strong>Craft your prompt</strong> with schema + quality constraints (use my examples as templates)</li>
+        <li><strong>Generate with AI</strong> (GitHub Copilot, ChatGPT, Claude—your choice)</li>
+        <li><strong>Review the output</strong> against schema requirements manually</li>
+        <li><strong>Run <code>npm run validate</code></strong> to confirm schema compliance</li>
+        <li><strong>Run <code>npm run dev</code></strong> to see your quotes appear on the site</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 8: HAP's Rules for Working with AI
+         6 numbered rules (non-negotiable)
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='tips-container'>
+      <h2 class='section-heading-centered'>HAP's Rules for Working with AI</h2>
+      <p class='mb-2'>After creating quote-hap.json with AI assistance, I've developed six non-negotiable rules. These aren't suggestions—they're requirements that Prof. Teeters validated. Follow them every time you use AI for coding tasks.</p>
+
+      <div class='tip-card'>
+        <div class='tip-number'>1</div>
+        <div>
+          <h3>Always Specify Schema Requirements First</h3>
+          <p>AI doesn't know your project's rules unless you provide them. Start EVERY prompt by pasting your schema or listing required fields. Don't assume AI remembers context from earlier. Schema compliance isn't optional—it's foundational. Without it, AI generates plausible-looking code that fails validation every time.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>2</div>
+        <div>
+          <h3>Detailed Prompts Get Professional Results</h3>
+          <p>"Generate quotes" produces junk. "Generate 5 reflective developer-wisdom quotes, 10-20 words each, category 'developer-wisdom', following exact schema with fields id/category/tone/text/source, focused on computational thinking concepts from Stations 1-5" produces quality. The length of your prompt correlates directly with the quality of AI output.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>3</div>
+        <div>
+          <h3>Verify Everything Before Committing</h3>
+          <p>Run <code>npm run validate</code> before Git operations. Test manually even if validation passes. Read the output—don't just trust that it looks right. If you can't explain what the code does or why it's correct, you don't own it yet. Verification catches AI hallucinations, schema violations, and logical errors that look syntactically perfect.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>4</div>
+        <div>
+          <h3>Understanding Beats Speed</h3>
+          <p>AI can generate code faster than you can type, but speed without comprehension is technical debt. Read every line AI produces. Understand WHY it made each choice. Learn from the patterns. If Prof. Teeters asked you to explain this code, could you? If not, slow down and study it before accepting it.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>5</div>
+        <div>
+          <h3>Quality Requires Explicit Constraints</h3>
+          <p>AI won't optimize quality unless you define it. Include quality constraints in prompts: "concise" (10-20 words), "specific" (reference actual practices), "actionable" (something learners can do), "plain language" (no jargon). Generic prompts produce generic output. Professional prompts produce professional code.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>6</div>
+        <div>
+          <h3>You Own Every Line of Code</h3>
+          <p>Whether you typed it or AI generated it, you're responsible for quality, correctness, and schema compliance. Blame doesn't transfer to the AI when validation fails. Your name goes on the commit message. Own the code by verifying it, understanding it, and being willing to explain every decision it represents.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 9: Using VS Code Source Control for Commits
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Using VS Code Source Control for Your First Commit</h2>
+      <p class='mb-2'>After creating quote-hap.json with AI and verifying it passed validation, I needed to commit my work to Git and push it to GitHub. Prof. Teeters showed me how to use VS Code's Source Control panel—no terminal commands needed.</p>
+
+      <h3 class='mt-3'>Step 1: Open Source Control Panel</h3>
+      <p class='mt-1'>In VS Code's sidebar, I clicked the Source Control icon (looks like a branching tree). This panel shows all files that changed since my last commit. I saw <code>data/quote-hap.json</code> listed with a "U" (untracked file).</p>
+
+      <h3 class='mt-3'>Step 2: Stage Your Changes</h3>
+      <p class='mt-1'>I clicked the <strong>+</strong> button next to <code>quote-hap.json</code> to stage it. Staging means "include this file in my next commit." The file moved from "Changes" to "Staged Changes"—ready to be committed.</p>
+
+      <h3 class='mt-3'>Step 3: Write a Commit Message</h3>
+      <p class='mt-1'>At the top of the Source Control panel, there's a text box for commit messages. I typed:</p>
+
+      <CodeBlock
+        code={`Add HAP's computational thinking quotes
+
+Created quote-hap.json with 8 developer wisdom quotes about
+lessons from Stations 1-5. All quotes generated with AI assistance,
+verified for schema compliance, and validated with npm run validate.`}
+        lang='text'
+      />
+
+      <p class='mt-1'><strong>Good commit messages explain WHAT changed and WHY.</strong> Not just "added file" but what the file contains and how you created it.</p>
+
+      <h3 class='mt-3'>Step 4: Commit Your Changes</h3>
+      <p class='mt-1'>I clicked the <strong>✓ Commit</strong> button. VS Code saved my changes to Git's history locally. Now my commit exists on my computer, but GitHub doesn't know about it yet.</p>
+
+      <h3 class='mt-3'>Step 5: Push to GitHub</h3>
+      <p class='mt-1'>At the bottom of the Source Control panel, I clicked <strong>Sync Changes</strong> (or the cloud upload icon). This pushed my local commit to my fork on GitHub. Now my contribution is visible online.</p>
+
+      <div class='hap-note-callout mt-2'>
+        <div class='hap-note-content'>
+          <h3>🟠 What I learned about Git workflow:</h3>
+          <p>Stage → Commit → Push is the pattern. VS Code's GUI makes it visual: you SEE which files changed, you CHOOSE which to include, you DESCRIBE what you did, then you SYNC to GitHub. No memorizing terminal commands. The Source Control panel shows your workflow state at every step.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 10: Opening Your First Pull Request
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Opening Your First Pull Request</h2>
+      <p class='mb-2'>After pushing quote-hap.json to my fork, I needed to contribute it back to the original Magic Quotes repository. That's what pull requests (PRs) do—they ask the project maintainer to "pull" your changes into the main project.</p>
+
+      <h3 class='mt-3'>Step 1: Visit Your Fork on GitHub</h3>
+      <p class='mt-1'>I opened my browser and navigated to my fork: <code>github.com/[my-username]/magic-quotes</code>. GitHub showed a banner: "This branch is 1 commit ahead of cynthiateeters:main" with a <strong>Contribute</strong> button.</p>
+
+      <h3 class='mt-3'>Step 2: Click "Open Pull Request"</h3>
+      <p class='mt-1'>I clicked <strong>Contribute → Open pull request</strong>. GitHub showed me a comparison: what changed between the original repository and my fork. I saw my new file: <code>data/quote-hap.json</code>.</p>
+
+      <h3 class='mt-3'>Step 3: Write a PR Description</h3>
+      <p class='mt-1'>GitHub asked for a title and description. I wrote:</p>
+
+      <div class='prompt-box mt-2'>
+        <div class='prompt-label'>My Pull Request Description:</div>
+        <CodeBlock
+          code={`Add HAP's computational thinking quotes
+
+## Summary
+Added quote-hap.json with 8 developer wisdom quotes about computational thinking.
+
+## Content
+- 8 quotes covering lessons from Stations 1-5
+- Category: developer-wisdom
+- Tone: reflective and encouraging
+- Source: ai-assisted (generated with GitHub Copilot, manually verified)
+
+## Testing
+- ✅ Passed \`npm run validate\`
+- ✅ Quotes display correctly on \`npm run dev\`
+- ✅ Schema compliance verified
+- ✅ All quotes on-theme for computational thinking`}
+          lang='text'
+        />
+      </div>
+
+      <h3 class='mt-3'>Step 4: Submit the PR</h3>
+      <p class='mt-1'>I clicked <strong>Create pull request</strong>. GitHub created PR #[number] and notified the project maintainer. My contribution is now visible to the community, waiting for review.</p>
+
+      <div class='hap-note-callout mt-2'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1762699548/hap-celebrating_bljvgl.jpg' alt='HAP celebrating his first pull request' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
+          <h3>🟠 HAP's First Contribution Moment</h3>
+          <p>Seeing my PR appear on GitHub felt incredible. I'd gone from thinking computationally (Stations 1-4) to setting up a project (Station 5) to making a real contribution (Station 6). This wasn't a tutorial exercise—it was a live website that other people use. My quotes would appear on magic-quotes.netlify.app if the PR got merged.</p>
+          <p class='mt-1'>Prof. Teeters told me: "This is how developers grow. You contribute small pieces to real projects. You learn from code review. You build confidence through practice." That's what Week 1 taught me—not just how to think, but how to participate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 11: When NOT to Use AI
+         ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>When NOT to Use AI</h2>
+      <p class='mb-2'>AI is powerful for generating code, but it's not always the right tool. Understanding when to work manually is just as important as knowing when to use AI. Prof. Teeters taught me these three scenarios where manual work beats AI speed.</p>
+
+      <div class='analysis-grid mt-2'>
+        <div class='analysis-point'>
+          <h3>When You're Learning New Concepts</h3>
+          <p><strong>Manual work builds understanding.</strong> If this is your first time working with JSON schemas, Git workflows, or project structures, type the code yourself. AI generates correct output but skips the learning process. You learn by doing, by making mistakes, by debugging your own errors. Use AI after you understand the fundamentals, not before.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>When the Task Requires Judgment</h3>
+          <p><strong>AI can't make quality decisions for you.</strong> Choosing WHICH computational thinking lessons matter most, WHICH quotes represent your learning journey, WHICH tone fits your voice—these are judgment calls. AI generates plausible options, but you decide what's good. Don't outsource the thinking that makes your work meaningful.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>When Verification Takes Longer Than Writing</h3>
+          <p><strong>Sometimes manual is faster.</strong> For simple tasks (creating one quote, fixing a typo, adjusting a field), typing it yourself takes 30 seconds. Crafting a detailed AI prompt, reviewing output, and verifying correctness takes 2 minutes. Use AI for repetitive tasks (generating 10 similar quotes), not one-off edits.</p>
+        </div>
+      </div>
+
+      <div class='warning-box mt-3'>
+        <h3>🟠 Prof. Teeters' Warning About AI and Learning</h3>
+        <p class='mt-1'><strong>"AI should accelerate what you already understand, not replace the learning process. If you use AI before you understand the problem, you're accepting solutions instead of developing judgment."</strong></p>
+        <p class='mt-1'>She told me this after I tried to use AI other purposes—before I understood computational thinking. The AI-generated answers were correct, but I didn't learn anything. I had to go back and work through problems manually to build real understanding.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+         SECTION 12: Learning Objectives Checklist
+         ============================================================ -->
+  <section class='content-section'>
+    <h2>Learning Objectives Checklist</h2>
+    <p class='mt-1'><strong>Congratulations on completing all six stations of HAP's Learning Lab!</strong> Before you finish, verify you've mastered the principles of responsible AI use for computational thinking:</p>
+
+    <div class='analysis-grid mt-2'>
+      <div class='analysis-point'>
+        <h3>Understanding AI Capabilities</h3>
+        <ul class='mt-1'>
+          <li>I understand what AI excels at (pattern recognition, syntax, speed) and where it struggles (context, judgment, validation)</li>
+          <li>I know AI needs explicit requirements in every prompt—it doesn't remember context or read schema files automatically</li>
+          <li>I can identify when manual work is better than AI assistance</li>
+        </ul>
+      </div>
+
+      <div class='analysis-point'>
+        <h3>Prompt Engineering Skills</h3>
+        <ul class='mt-1'>
+          <li>I can write detailed prompts with schema requirements, quality constraints, and thematic guidance</li>
+          <li>I understand that vague prompts produce vague output; detailed prompts produce professional code</li>
+          <li>I know how to iterate on prompts when initial output doesn't meet requirements</li>
+        </ul>
+      </div>
+
+      <div class='analysis-point'>
+        <h3>Verification Workflow</h3>
+        <ul class='mt-1'>
+          <li>I run <code>npm run validate</code> before every Git commit to verify schema compliance</li>
+          <li>I manually review AI-generated code even when validation passes</li>
+          <li>I understand that verification is my responsibility, not AI's</li>
+        </ul>
+      </div>
+
+      <div class='analysis-point'>
+        <h3>Professional Responsibility</h3>
+        <ul class='mt-1'>
+          <li>I own every line of code I commit, whether I wrote it or AI generated it</li>
+          <li>I can explain what my code does and why it's correct</li>
+          <li>I understand that understanding beats speed—learning matters more than shipping fast</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class='hap-note-callout mt-3'>
+      <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1762699548/hap-celebrating_bljvgl.jpg' alt='HAP celebrating completion of all stations' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+      <div class='hap-note-content'>
+        <h3>Prof. Teeters on Completing All Six Stations</h3>
+        <p><strong>"HAP, you've completed a real learning journey. You started by thinking logically, learned to communicate your logic, debugged your reasoning, applied computational thinking, practiced professional workflows, and contributed to a real project—all while learning to use AI responsibly. That's what it means to become a developer."</strong></p>
+
+        <p class='mt-1'>"Now you have been introduced to the foundations. Next you will go onto building. But you're ready now because you understand HOW to learn, not just WHAT to memorize. Keep asking questions. Keep verifying. Keep owning your work. That's the path forward." 🟠</p>
+      </div>
+    </div>
+  </section>
+</StationLayout>

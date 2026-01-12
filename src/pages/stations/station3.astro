@@ -1,0 +1,456 @@
+---
+/**
+ * Station 3: Reasoning and Correcting Logic - HAP Learning Lab
+ *
+ * Learning Intent:
+ * - Primary concept: Logic must be walked through step by step before it can be trusted—and corrected when flaws are found
+ * - Supporting concepts: Beginners naturally copy-paste; loops are a better way; tracing reveals hidden problems
+ * - Non-goals: No JavaScript, no functions/variables, no formal testing techniques
+ *
+ * Code Example Role: Diagnostic → Correction (copy-paste attempt, then flawed loop, then fixed loop)
+ */
+
+import StationLayout from '../../layouts/StationLayout.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+import FlawedLoopFlowchart from '../../components/FlawedLoopFlowchart.astro';
+import FixedLoopFlowchart from '../../components/FixedLoopFlowchart.astro';
+
+const introContent = `
+    <p><strong>Welcome to Station 3!</strong> After Station 2, I felt good about my Secret Number Game. I could write it down clearly using pseudocode. But something was bothering me: the player only gets one guess. That is not much of a game!</p>
+    <p class="mt-1">"I want to give the player more chances," I told Grace. "What if they could keep guessing until they get it right?"</p>
+    <p class="mt-1">My first idea seemed obvious: I would write the guess-and-check part multiple times. But Grace asked me a question that made me think. And when I tried a different approach, I made a mistake that taught me something important about how logic actually works.</p>
+    <p class="mt-1">Let me show you what happened... 🟠</p>
+`;
+---
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->
+<StationLayout stationNumber={3} title='Reasoning and Correcting Logic' subtitle='Walking through logic before trusting it' description='Learn why logic must be traced step by step before trusting it. HAP discovers a hidden flaw in his loop and learns to correct it through careful reasoning.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/v1759495998/hap-laptop_xiewar.jpg' avatarAlt='HAP at his laptop, ready to improve his Secret Number Game' introContent={introContent} ogImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/v1759495998/hap-laptop_xiewar.jpg' nextStationTitle='Station 4' footerReminder='Trace before you trust. Logic that looks right can still be wrong—walk through it step by step.' labName='Computational Thinking'>
+  <!-- ============================================================
+       SECTION 1: What You'll Learn
+       ============================================================ -->
+  <section class='content-section'>
+    <h2 class='section-heading-centered'>What You'll Learn at This Station</h2>
+
+    <div class='intro-box'>
+      <p><strong>HAP's Discovery:</strong> I thought that if I wanted something to happen multiple times, I should write it multiple times. That seemed logical! But I learned there is a better way—and that even the better way can go wrong if you do not trace through it carefully.</p>
+    </div>
+
+    <div class='overview-grid mt-2'>
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>📋</span> Copy-Paste Has Problems</h3>
+        <p class='stat-large'>Repeating Code Repeats Mistakes</p>
+        <p>When you copy the same logic over and over, any mistake in that logic also gets copied. And if you need to change something, you have to change it everywhere.</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>🔄</span> Loops Are a Better Way</h3>
+        <p class='stat-large stat-teal'>Say It Once, Repeat It Many</p>
+        <p>A loop lets you write the logic once and have it repeat until something changes. But you have to make sure something actually can change!</p>
+      </div>
+
+      <div class='insight-card'>
+        <h3><span class='insight-icon'>👁️</span> Reading Is Not Tracing</h3>
+        <p class='stat-large stat-brown'>Walk Through Every Step</p>
+        <p>When you read logic, your brain fills in gaps. When you trace, you follow exactly what happens—step by step, no assumptions.</p>
+      </div>
+    </div>
+
+    <div class='hap-note-callout'>
+      <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1759495999/hap-confused-map_q8q0ej.jpg' alt='HAP looking confused while studying a map' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+      <div class='hap-note-content'>
+        <h3>HAP's Confession:</h3>
+        <ul>
+          <li>My first instinct was to copy and paste. It felt like the obvious solution—if I want something three times, I write it three times.</li>
+          <li>I did not think about what happens when the player wins early. My copy-paste version kept asking even after they got it right!</li>
+          <li>When I switched to a loop, I forgot something important. I felt confident until Prof. Teeters asked me to trace through it step by step. 😳</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2: My First Idea (Copy-Paste)
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>My First Idea: Copy and Paste</h2>
+
+      <p class='mb-2'>I wanted to give the player three chances to guess. My first thought was simple: write the guess-and-check part three times.</p>
+
+      <div class='prompt-box'>
+        <div class='prompt-label'>My copy-paste attempt:</div>
+        <CodeBlock
+          code={`BEGIN
+    DISPLAY "Welcome to the Secret Number Game!"
+    DISPLAY "I am thinking of a number."
+    DISPLAY "Can you guess what it is?"
+
+    INPUT guess
+    IF guess is not correct THEN
+        DISPLAY "Wrong guess. Try again!"
+    ENDIF
+
+    INPUT guess
+    IF guess is not correct THEN
+        DISPLAY "Wrong guess. Try again!"
+    ENDIF
+
+    INPUT guess
+    IF guess is not correct THEN
+        DISPLAY "Wrong guess. Try again!"
+    ENDIF
+
+    DISPLAY "Thanks for playing!"
+END`}
+          lang='text'
+        />
+      </div>
+
+      <p class='mt-2'>I showed this to Grace, feeling pretty clever. She looked at it carefully, then asked me a question.</p>
+
+      <div class='hap-note-callout mt-2'>
+        <div class='hap-note-content'>
+          <h3>Grace's Question:</h3>
+          <p>"What happens if the player guesses correctly on the first try?"</p>
+          <p class='mt-1'>I traced through it in my head. If they guess right on the first try... the IF condition is false, so it skips the "Wrong guess" message. But then... it still asks for another guess! And another! The player already won, but the game keeps going!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3: Problems with Copy-Paste
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>What Is Wrong with Copy-Paste?</h2>
+
+      <p class='mb-2'>Grace helped me see several problems with my approach.</p>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>It Does Not Stop When You Win</h3>
+          <p>Even if the player guesses correctly, the game keeps asking for more guesses. There is no way to exit early.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>It Does Not Scale</h3>
+          <p>What if I want ten guesses? Or unlimited guesses until they get it right? I would have to keep copying and pasting forever.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Mistakes Get Copied Too</h3>
+          <p>If I made an error in one copy, I probably made it in all of them. And if I need to fix something, I have to fix it in every copy.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>It Is Hard to Read</h3>
+          <p>All that repeated code makes it hard to see what the logic actually does. The important parts get buried in repetition.</p>
+        </div>
+      </div>
+
+      <div class='hap-note-callout mt-2'>
+        <div class='hap-note-content'>
+          <h3>Grace's Observation:</h3>
+          <p>"When you copy the same logic over and over, any mistake in that logic also gets copied over and over. And if you need to change something, you have to change it everywhere. There is a better way."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: A Better Way (Loops)
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>A Better Way: Loops</h2>
+
+      <p class='mb-2'>Grace introduced me to something called a WHILE loop. The idea is simple: instead of writing the same thing multiple times, you write it once and tell the computer to keep doing it until something changes.</p>
+
+      <div class='intro-box'>
+        <p><strong>How a WHILE loop works:</strong></p>
+        <ul class='mt-1'>
+          <li><strong>WHILE</strong> some condition is true <strong>DO</strong></li>
+          <li>&nbsp;&nbsp;&nbsp;&nbsp;(do these steps)</li>
+          <li><strong>ENDWHILE</strong></li>
+        </ul>
+        <p class='mt-1'>The computer keeps repeating the steps inside the loop as long as the condition is true. When the condition becomes false, it stops and moves on.</p>
+      </div>
+
+      <p class='mt-2'>This seemed perfect! I could say "WHILE the guess is not correct, keep asking." When they finally get it right, the condition becomes false and the loop stops.</p>
+
+      <p class='mt-1'>I rewrote my pseudocode using a loop.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5: My Loop Attempt (The Flaw)
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>My Loop Attempt</h2>
+
+      <p class='mb-2'>Here is what I wrote. Read it through—does it look right to you?</p>
+
+      <div class='prompt-box'>
+        <div class='prompt-label'>My loop version (with a hidden problem):</div>
+        <CodeBlock
+          code={`BEGIN
+    DISPLAY "Welcome to the Secret Number Game!"
+    DISPLAY "I am thinking of a number."
+    DISPLAY "Can you guess what it is?"
+
+    INPUT guess
+
+    WHILE guess is not correct DO
+        DISPLAY "Wrong guess. Try again!"
+    ENDWHILE
+
+    DISPLAY "Thanks for playing!"
+END`}
+          lang='text'
+        />
+      </div>
+
+      <p class='mt-2'>I was pleased with myself. Much cleaner than the copy-paste version! I showed it to Prof. Teeters.</p>
+
+      <p class='mt-1'>She looked at it, then said something that surprised me: "Before you trust this logic, trace through it. Slowly. Every time."</p>
+
+      <p class='mt-1'>I thought it was fine. But she asked me to actually walk through what happens, step by step, if the player guesses wrong.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6: Tracing the Logic
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Tracing the Logic</h2>
+
+      <p class='mb-2'>I pretended to be the computer and followed each step exactly. The player guesses "5" but the secret number is "7".</p>
+
+      <div class='prompt-box'>
+        <div class='prompt-label'>Step-by-step trace:</div>
+        <CodeBlock
+          code={`Step 1: DISPLAY "Welcome to the Secret Number Game!"
+
+Step 2: DISPLAY "I am thinking of a number."
+
+Step 3: DISPLAY "Can you guess what it is?"
+
+Step 4: INPUT guess
+        → Player types: 5
+        → guess = 5
+
+Step 5: WHILE guess is not correct DO
+        → Is 5 not correct? YES (secret is 7)
+        → Enter the loop
+
+Step 6: DISPLAY "Wrong guess. Try again!"
+
+Step 7: Go back to WHILE
+
+Step 8: WHILE guess is not correct DO
+        → Is 5 not correct? YES (guess is STILL 5!)
+        → Enter the loop again
+
+Step 9: DISPLAY "Wrong guess. Try again!"
+
+Step 10: Go back to WHILE...
+
+... this never stops!`}
+          lang='text'
+        />
+      </div>
+
+      <div class='hap-note-callout mt-2'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230464/hap-sconcerned-laptop_frh5ua.jpg' alt='HAP looking concerned while looking at his laptop' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
+          <h3>🟠 The Moment I Understood:</h3>
+          <p>"Wait," I said. "The guess never changes! It is still 5 every time we check. The player never gets to type a new number!"</p>
+          <p class='mt-1'>Prof. Teeters nodded. "The loop keeps running, but nothing inside it changes the thing you are checking. So it can never stop."</p>
+          <p class='mt-1'>I had created a trap. The player would be stuck seeing "Wrong guess. Try again!" forever, with no way to actually try again.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7: Seeing the Problem Visually
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Seeing the Problem</h2>
+
+      <p class='mb-2'>Prof. Teeters showed me my logic as a flowchart. Look at what is inside the loop:</p>
+
+      <FlawedLoopFlowchart />
+
+      <div class='intro-box mt-2'>
+        <p><strong>What did I notice?</strong></p>
+        <p class='mt-1'>The loop goes around and around, but there is only one box inside it: the "Wrong guess" message. There is no INPUT box inside the loop. The player never gets to enter a new guess!</p>
+        <p class='mt-1'>The arrow goes back to check the condition, but the guess is still the same. So the condition is still true. So it loops again. And again. Forever.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8: The Fix
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Correcting the Logic</h2>
+
+      <p class='mb-2'>Once I understood the problem, the fix was clear: I need to ask for a new guess <em>inside</em> the loop.</p>
+
+      <div class='prompt-box'>
+        <div class='prompt-label'>The corrected pseudocode:</div>
+        <CodeBlock
+          code={`BEGIN
+    DISPLAY "Welcome to the Secret Number Game!"
+    DISPLAY "I am thinking of a number."
+    DISPLAY "Can you guess what it is?"
+
+    INPUT guess
+
+    WHILE guess is not correct DO
+        DISPLAY "Wrong guess. Try again!"
+        INPUT guess
+    ENDWHILE
+
+    DISPLAY "You got it!"
+    DISPLAY "Thanks for playing!"
+END`}
+          lang='text'
+        />
+      </div>
+
+      <div class='analysis-grid mt-2'>
+        <div class='analysis-point'>
+          <h3>The Key Change</h3>
+          <p>I added <code>INPUT guess</code> inside the loop, right after the "Wrong guess" message. Now the player can enter a new guess each time.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Why It Works</h3>
+          <p>Each time the loop runs, the guess gets a new value. Eventually, the player will enter the correct number, and the loop will stop.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Added Success Message</h3>
+          <p>I also added "You got it!" so the player knows they won. The game should celebrate their success!</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Same Structure, One Line Different</h3>
+          <p>The fix was just one line. But without tracing, I never would have found the problem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 9: The Corrected Flowchart
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>The Corrected Flowchart</h2>
+
+      <p class='mb-2'>Now look at the corrected version. See the difference?</p>
+
+      <FixedLoopFlowchart />
+
+      <div class='intro-box mt-2'>
+        <p><strong>What changed?</strong></p>
+        <p class='mt-1'>Now there are <em>two</em> boxes inside the loop: the "Wrong guess" message AND the INPUT box. After telling the player they were wrong, the game asks for a new guess. Then it loops back to check if the new guess is correct.</p>
+        <p class='mt-1'>The arrow now goes: check → wrong message → get new guess → check again. Eventually the guess will be correct, the condition will be false, and the loop will exit.</p>
+      </div>
+
+      <div class='hap-note-callout mt-2'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/v1763230522/hap-thumbs-up_s4si0j.jpg' alt='HAP giving a confident thumbs up' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
+          <h3>🟠 What I Learned:</h3>
+          <p>Looking at the flowcharts side by side made the problem obvious. In the broken version, the loop had nothing that could change the outcome. In the fixed version, the INPUT inside the loop gives the player a way to eventually succeed.</p>
+          <p class='mt-1'>Prof. Teeters reminded me: "A loop that repeats is only useful if something inside it can change. Otherwise, it just does the same thing forever."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 10: What I Learned
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>What I Learned</h2>
+
+      <p class='mb-2'>This experience taught me something important about logic and about myself as a learner.</p>
+
+      <div class='analysis-grid'>
+        <div class='analysis-point'>
+          <h3>Copy-Paste Is Not the Answer</h3>
+          <p>My first instinct—repeating code—created problems. Loops are a better way to handle repetition.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Loops Need Something to Change</h3>
+          <p>A loop checks a condition over and over. Something inside the loop must be able to make that condition eventually become false.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Reading Is Not the Same as Tracing</h3>
+          <p>When I read my logic, I saw what I <em>intended</em>. When I traced step by step, I saw what <em>actually happens</em>.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>Flowcharts Show What Is Missing</h3>
+          <p>The visual made the problem obvious. I could see that the loop had nothing inside it that changed the guess.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION: Quick Reference
+       ============================================================ -->
+  <section class='content-section'>
+    <div class='tips-container'>
+      <h2 class='section-heading-centered'>🎓 Reasoning About Logic Quick Reference</h2>
+
+      <div class='tip-card'>
+        <div class='tip-number'>1</div>
+        <div>
+          <h3>Do Not Just Copy and Paste</h3>
+          <p>If you want something to repeat, a loop is usually better than copying the same code multiple times. Loops are easier to change and harder to mess up.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>2</div>
+        <div>
+          <h3>Loops Need an Exit</h3>
+          <p>A loop keeps running while its condition is true. Make sure something inside the loop can eventually make the condition false.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>3</div>
+        <div>
+          <h3>Trace Before You Trust</h3>
+          <p>Do not assume logic works because you can read it. Walk through each step exactly as the computer would—no skipping, no assuming.</p>
+        </div>
+      </div>
+
+      <div class='tip-card'>
+        <div class='tip-number'>4</div>
+        <div>
+          <h3>Use Flowcharts to See the Problem</h3>
+          <p>When something is wrong, drawing the logic can help you see what is missing. The visual makes gaps and problems obvious.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</StationLayout>

@@ -1,0 +1,282 @@
+// ================================================
+// Topic: Student Grades Program
+// File: student-grades.pseudo
+// ================================================
+// Learning objectives:
+// - Arrays
+// - Loops
+// - Calculations
+// - Functions
+// ================================================
+
+// Student Grade Tracker
+// Manages student scores and calculates statistics
+
+// ----------------------------------------
+// Data Storage (arrays)
+// ----------------------------------------
+
+SET studentNames = []
+SET studentScores = []
+SET studentCount = 0
+SET maxStudents = 10
+
+// ----------------------------------------
+// Helper Functions
+// ----------------------------------------
+
+FUNCTION displayLine ()
+BEGIN
+    DISPLAY "----------------------------------------"
+END
+
+FUNCTION displayHeader (title)
+BEGIN
+    CALL displayLine()
+    DISPLAY "  " + title
+    CALL displayLine()
+END
+
+// ----------------------------------------
+// Core Functions
+// ----------------------------------------
+
+FUNCTION addStudent (name, score)
+BEGIN
+    IF studentCount < maxStudents THEN
+        SET studentCount = studentCount + 1
+        SET studentNames[studentCount] = name
+        SET studentScores[studentCount] = score
+        DISPLAY "Added: " + name + " with score " + score
+        RETURN true
+    ELSE
+        DISPLAY "Error: Maximum students reached"
+        RETURN false
+    ENDIF
+END
+
+FUNCTION calculateAverage ()
+BEGIN
+    IF studentCount = 0 THEN
+        RETURN 0
+    ENDIF
+
+    SET total = 0
+    FOR i = 1 TO studentCount STEP 1
+        SET total = total + studentScores[i]
+    NEXT i
+
+    RETURN total / studentCount
+END
+
+FUNCTION findHighestScore ()
+BEGIN
+    IF studentCount = 0 THEN
+        RETURN 0
+    ENDIF
+
+    SET highest = studentScores[1]
+    FOR i = 2 TO studentCount STEP 1
+        IF studentScores[i] > highest THEN
+            SET highest = studentScores[i]
+        ENDIF
+    NEXT i
+
+    RETURN highest
+END
+
+FUNCTION findLowestScore ()
+BEGIN
+    IF studentCount = 0 THEN
+        RETURN 0
+    ENDIF
+
+    SET lowest = studentScores[1]
+    FOR i = 2 TO studentCount STEP 1
+        IF studentScores[i] < lowest THEN
+            SET lowest = studentScores[i]
+        ENDIF
+    NEXT i
+
+    RETURN lowest
+END
+
+FUNCTION getLetterGrade (score)
+BEGIN
+    IF score >= 90 THEN
+        RETURN "A"
+    ELSEIF score >= 80 THEN
+        RETURN "B"
+    ELSEIF score >= 70 THEN
+        RETURN "C"
+    ELSEIF score >= 60 THEN
+        RETURN "D"
+    ELSE
+        RETURN "F"
+    ENDIF
+END
+
+FUNCTION countByGrade (targetGrade)
+BEGIN
+    SET count = 0
+    FOR i = 1 TO studentCount STEP 1
+        SET grade = CALL getLetterGrade(studentScores[i])
+        IF grade = targetGrade THEN
+            SET count = count + 1
+        ENDIF
+    NEXT i
+    RETURN count
+END
+
+FUNCTION displayAllStudents ()
+BEGIN
+    CALL displayHeader("ALL STUDENTS")
+
+    IF studentCount = 0 THEN
+        DISPLAY "No students enrolled"
+        RETURN
+    ENDIF
+
+    DISPLAY "Name                Score   Grade"
+    CALL displayLine()
+
+    FOR i = 1 TO studentCount STEP 1
+        SET grade = CALL getLetterGrade(studentScores[i])
+        DISPLAY studentNames[i] + "        " + studentScores[i] + "      " + grade
+    NEXT i
+
+    CALL displayLine()
+    DISPLAY "Total students: " + studentCount
+END
+
+FUNCTION displayStatistics ()
+BEGIN
+    CALL displayHeader("CLASS STATISTICS")
+
+    IF studentCount = 0 THEN
+        DISPLAY "No data available"
+        RETURN
+    ENDIF
+
+    SET avg = CALL calculateAverage()
+    SET high = CALL findHighestScore()
+    SET low = CALL findLowestScore()
+
+    DISPLAY "Total Students: " + studentCount
+    DISPLAY "Class Average:  " + avg
+    DISPLAY "Highest Score:  " + high
+    DISPLAY "Lowest Score:   " + low
+    DISPLAY ""
+
+    DISPLAY "Grade Distribution:"
+    DISPLAY "  A: " + CALL countByGrade("A") + " students"
+    DISPLAY "  B: " + CALL countByGrade("B") + " students"
+    DISPLAY "  C: " + CALL countByGrade("C") + " students"
+    DISPLAY "  D: " + CALL countByGrade("D") + " students"
+    DISPLAY "  F: " + CALL countByGrade("F") + " students"
+END
+
+FUNCTION searchStudent (searchName)
+BEGIN
+    FOR i = 1 TO studentCount STEP 1
+        IF studentNames[i] = searchName THEN
+            DISPLAY "Found: " + studentNames[i]
+            DISPLAY "Score: " + studentScores[i]
+            DISPLAY "Grade: " + CALL getLetterGrade(studentScores[i])
+            RETURN true
+        ENDIF
+    NEXT i
+
+    DISPLAY "Student not found: " + searchName
+    RETURN false
+END
+
+// ----------------------------------------
+// Menu Function
+// ----------------------------------------
+
+FUNCTION displayMenu ()
+BEGIN
+    DISPLAY ""
+    DISPLAY "=== STUDENT GRADE TRACKER ==="
+    DISPLAY "1. Add Student"
+    DISPLAY "2. View All Students"
+    DISPLAY "3. View Statistics"
+    DISPLAY "4. Search Student"
+    DISPLAY "5. Exit"
+    DISPLAY ""
+END
+
+// ----------------------------------------
+// Main Program
+// ----------------------------------------
+
+BEGIN
+    DISPLAY "========================================"
+    DISPLAY "    STUDENT GRADE TRACKING SYSTEM"
+    DISPLAY "========================================"
+
+    // Add some sample data
+    CALL addStudent("Alice Johnson", 92)
+    CALL addStudent("Bob Smith", 78)
+    CALL addStudent("Charlie Brown", 85)
+    CALL addStudent("Diana Ross", 95)
+    CALL addStudent("Edward Kim", 67)
+
+    DISPLAY ""
+
+    SET running = true
+
+    WHILE running = true
+        CALL displayMenu()
+
+        DISPLAY "Enter choice:"
+        INPUT choice
+
+        IF choice = 1 THEN
+            // Add student
+            CALL displayHeader("ADD NEW STUDENT")
+
+            DISPLAY "Enter student name:"
+            INPUT newName
+
+            DISPLAY "Enter score (0-100):"
+            INPUT newScore
+
+            IF newScore >= 0 AND newScore <= 100 THEN
+                CALL addStudent(newName, newScore)
+            ELSE
+                DISPLAY "Invalid score. Must be 0-100."
+            ENDIF
+
+        ELSEIF choice = 2 THEN
+            // View all students
+            CALL displayAllStudents()
+
+        ELSEIF choice = 3 THEN
+            // View statistics
+            CALL displayStatistics()
+
+        ELSEIF choice = 4 THEN
+            // Search student
+            CALL displayHeader("SEARCH STUDENT")
+
+            DISPLAY "Enter student name to search:"
+            INPUT searchName
+
+            CALL searchStudent(searchName)
+
+        ELSEIF choice = 5 THEN
+            // Exit
+            SET running = false
+
+        ELSE
+            DISPLAY "Invalid choice. Please try again."
+        ENDIF
+
+    ENDWHILE
+
+    DISPLAY ""
+    CALL displayHeader("GOODBYE!")
+    DISPLAY "Thank you for using the Grade Tracker"
+END
